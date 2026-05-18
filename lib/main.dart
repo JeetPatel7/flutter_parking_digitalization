@@ -7,17 +7,27 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // body:,
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-          title: Center(
-            child: Text("User Data")),
-          
-        ),
+        body: Container(
+          //color: Gradient.lerp(a, b, t),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Version 1.0"),
+                ],
+              ),
+
+              SizedBox(height: 20),
+
+              // Image.asset(name)
+
+              Text("Parking Made Simple", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
+            ],
+          ),
+        )
       ),
     ),
   );
-  //runApp(MyApp());
+ 
 }
