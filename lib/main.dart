@@ -1,6 +1,4 @@
 
-import 'package:day_6/MyWidgets/userdatafetch.dart';
-import 'package:day_6/MyWidgets/userdatausingListview.dart';
 import 'package:flutter/material.dart';
 
 void main() {
