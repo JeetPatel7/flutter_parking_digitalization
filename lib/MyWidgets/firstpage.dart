@@ -79,36 +79,63 @@ class _firstpageState extends State<firstpage> {
         ),
         Divider(color: Colors.black, thickness: 2),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          spacing: 230,
           children: [
-            DropdownButton(
-              value: selectedcity,
-              items: Cities.map((c) {
-                return DropdownMenuItem(value: c, child: Text(c));
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedcity = value!;
-                });
-              },
+            Row(
+              children: [
+                Text(
+                  "Total Slots:${Slots[selectedcity]}",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                DropdownButton(
+                  value: selectedcity,
+                  items: Cities.map((c) {
+                    return DropdownMenuItem(value: c, child: Text(c));
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedcity = value!;
+                    });
+                  },
+                ),
+              ],
             ),
           ],
         ),
+        // Row(
+        //   children: [
+        //     Text(
+        //       "Total Slots:${Slots[selectedcity]}",
+        //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        //     ),
+        //   ],
+        // ),
+        Divider(color: Colors.black, thickness: 2),
         Row(
           children: [
             Text(
-              "Total Slots:",
+              "Total Available Slots:",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ],
         ),
         Container(
-          height: 300,
+          height: 250,
           margin: EdgeInsets.all(15),
-          color: const Color.fromARGB(145, 199, 178, 178),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(28, 85, 99, 222),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black, width: 1),
+          ),
           child: SingleChildScrollView(
             child: Column(
-              spacing: 15,
+              spacing: 18,
               children: [
                 // Expanded(
                 //  ListView.builder(
@@ -130,30 +157,61 @@ class _firstpageState extends State<firstpage> {
                   if (SlotDetails[selectedcity]![i] == false)
                     Row(
                       children: [
-                        // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
-                        Text(
-                          "Slot $i: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight(15),
-                            color: Colors.black,
+                        Container(
+                          // margin: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: 15),
+                          height: 30,
+                          width: 460,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF74ABE2),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.black, width: 2),
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Slot $i: ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+
+                              Checkbox(
+                                value: false,
+                                onChanged: (value) {
+                                  setState(() {
+                                    SlotDetails[selectedcity]![i] = value!;
+                                    OccupiedSlots[selectedcity] =OccupiedSlots[selectedcity]! + 1;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ),
 
-                        Checkbox(
-                          value: false,
-                          onChanged: (value) {
-                            setState(() {
-                              SlotDetails[selectedcity]![i] = value!;
-                            });
-                          },
-                        ),
+                        // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
                       ],
                     ),
+                  //Make an else to avoid empty space box
+                  
+                    
               ],
             ),
           ),
         ),
+        Divider(color: Colors.black, thickness: 2),
+        Row(
+          children: [
+            Text(
+              "Occupied Slots: ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            ),
+            Text(OccupiedSlots[selectedcity].toString(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+          ],
+        ),
+
       ],
     );
   }
