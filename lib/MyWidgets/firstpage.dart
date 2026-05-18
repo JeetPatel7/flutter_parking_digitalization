@@ -71,148 +71,160 @@ class _firstpageState extends State<firstpage> {
   String selectedcity = "Rajkot";
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [IconButton(onPressed: null, icon: Icon(Icons.add))],
-        ),
-        Divider(color: Colors.black, thickness: 2),
-        Row(
-          spacing: 230,
-          children: [
-            Row(
-              children: [
-                Text(
-                  "Total Slots:${Slots[selectedcity]}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                DropdownButton(
-                  value: selectedcity,
-                  items: Cities.map((c) {
-                    return DropdownMenuItem(value: c, child: Text(c));
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedcity = value!;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-        // Row(
-        //   children: [
-        //     Text(
-        //       "Total Slots:${Slots[selectedcity]}",
-        //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-        //     ),
-        //   ],
-        // ),
-        Divider(color: Colors.black, thickness: 2),
-        Row(
-          children: [
-            Text(
-              "Total Available Slots:",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-          ],
-        ),
-        Container(
-          height: 250,
-          margin: EdgeInsets.all(15),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(28, 85, 99, 222),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black, width: 1),
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [IconButton(onPressed: null, icon: Icon(Icons.add))],
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              spacing: 18,
-              children: [
-                // Expanded(
-                //  ListView.builder(
-                //   // shrinkWrap: true,
-                //   // physics: NeverScrollableScrollPhysics(),
-                //   itemCount: AvailableSlots[selectedcity],
-                //   itemBuilder: (context, index) {
-                //     int slotNumber = index + 1;
-                //     // bool isOccupied = SlotDetails[selectedcity]![slotNumber]!;
-                //     return Row(
-                //       children: [
-                //         // Text()
-                //       ],
-                //     );
-                //   },
-                // ),
-                // ),
-                for (int i = 1; i <= Slots[selectedcity]!; i++)
-                  if (SlotDetails[selectedcity]![i] == false)
-                    Row(
-                      children: [
-                        Container(
-                          // margin: EdgeInsets.only(left: 10),
-                          padding: EdgeInsets.only(left: 15),
-                          height: 30,
-                          width: 460,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF74ABE2),
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black, width: 2),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Slot $i: ",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
+          Divider(color: Colors.black, thickness: 2),
+          Row(
+            spacing: 105,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Total Slots:${Slots[selectedcity]}",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Select City: ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  DropdownButton(
+                    value: selectedcity,
+                    items: Cities.map((c) {
+                      return DropdownMenuItem(value: c, child: Text(c));
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedcity = value!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          // Row(
+          //   children: [
+          //     Text(
+          //       "Total Slots:${Slots[selectedcity]}",
+          //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          //     ),
+          //   ],
+          // ),
+          Divider(color: Colors.black, thickness: 2),
+          Row(
+            children: [
+              Text(
+                "Total Available Slots:",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+            ],
+          ),
+          Container(
+            height: 250,
+            width: 470,
+            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(28, 85, 99, 222),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black, width: 1),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                spacing: 18,
+                children: [
+                  // Expanded(
+                  //  ListView.builder(
+                  //   // shrinkWrap: true,
+                  //   // physics: NeverScrollableScrollPhysics(),
+                  //   itemCount: AvailableSlots[selectedcity],
+                  //   itemBuilder: (context, index) {
+                  //     int slotNumber = index + 1;
+                  //     // bool isOccupied = SlotDetails[selectedcity]![slotNumber]!;
+                  //     return Row(
+                  //       children: [
+                  //         // Text()
+                  //       ],
+                  //     );
+                  //   },
+                  // ),
+                  // ),
+                  for (int i = 1; i <= Slots[selectedcity]!; i++)
+                    if (SlotDetails[selectedcity]![i] == false)
+                      Row(
+                        children: [
+                          Container(
+                            // margin: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: 15),
+                            height: 40,
+                            width: 425,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF74ABE2),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.black, width: 2),
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Slot $i: ",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
 
-                              Checkbox(
-                                value: false,
-                                onChanged: (value) {
-                                  setState(() {
-                                    SlotDetails[selectedcity]![i] = value!;
-                                    OccupiedSlots[selectedcity] =OccupiedSlots[selectedcity]! + 1;
-                                  });
-                                },
-                              ),
-                            ],
+                                Checkbox(
+                                  value: false,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      SlotDetails[selectedcity]![i] = value!;
+                                      OccupiedSlots[selectedcity] =
+                                          OccupiedSlots[selectedcity]! + 1;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
 
-                        // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
-                      ],
-                    ),
+                          // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
+                        ],
+                      ),
+
                   //Make an else to avoid empty space box
-                  
-                    
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        Divider(color: Colors.black, thickness: 2),
-        Row(
-          children: [
-            Text(
-              "Occupied Slots: ",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            Text(OccupiedSlots[selectedcity].toString(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-          ],
-        ),
-
-      ],
+          Divider(color: Colors.black, thickness: 2),
+          Row(
+            children: [
+              Text(
+                "Occupied Slots: ",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+              Text(
+                OccupiedSlots[selectedcity].toString(),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(onPressed: () {
+            setState(() {
+              Cities.remove('selectedcity');
+            });
+          }, child: Text("Delete City")),
+        ],
+      ),
     );
   }
 }
