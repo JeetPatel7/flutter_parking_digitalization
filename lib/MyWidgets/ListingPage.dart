@@ -140,7 +140,7 @@ class _firstpageState extends State<firstpage> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 250,
+            height: 500,
             width: 470,
             margin: EdgeInsets.all(20),
             padding: EdgeInsets.all(15),
@@ -184,12 +184,17 @@ class _firstpageState extends State<firstpage> {
                                   //   fontWeight: FontWeight.w500,
                                   //   color: Colors.black,
                                   // )),
-                                  value: false,
+                                  value: SlotDetails[selectedcity]![i],
                                   onChanged: (value) {
                                     setState(() {
-                                      SlotDetails[selectedcity]![i] = true;
-                                      OccupiedSlots[selectedcity] =
-                                          OccupiedSlots[selectedcity]! + 1;
+                                      SlotDetails[selectedcity]![i] = value!;
+                                      if (value!) {
+                                        OccupiedSlots[selectedcity] =
+                                            OccupiedSlots[selectedcity]! + 1;
+                                      } else {
+                                        OccupiedSlots[selectedcity] =
+                                            OccupiedSlots[selectedcity]! - 1;
+                                      }
                                     });
                                   },
                                 ),
@@ -206,65 +211,6 @@ class _firstpageState extends State<firstpage> {
               ),
             ),
           ),
-          // SingleChildScrollView(
-          //   child: Container(
-          //     child: Column(
-          //       children: [
-          //         for (int i = 1; i <= Slots[selectedcity]!; i++)
-          //           // if (SlotDetails[selectedcity]![i] == false)
-          //             Row(
-          //               children: [
-          //                 Container(
-          //                   // margin: EdgeInsets.only(left: 10),
-          //                   padding: EdgeInsets.only(left: 15),
-          //                   height: 40,
-          //                   width: 355,
-          //                   decoration: BoxDecoration(
-          //                     color: const Color(0xFF74ABE2),
-          //                     borderRadius: BorderRadius.circular(10),
-          //                     border:
-          //                         Border.all(color: Colors.black, width: 2),
-          //                   ),
-          //                   child: Row(
-          //                     children: [
-          //                       Text(
-          //                         "Slot $i",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           fontWeight: FontWeight.w500,
-          //                           color: Colors.black,
-          //                         ),
-          //                       ),
-
-          //                       Checkbox(
-          //                         // title: Text("Slot $i: ",style: TextStyle(
-          //                         //   fontSize: 20,
-          //                         //   fontWeight: FontWeight.w500,
-          //                         //   color: Colors.black,
-          //                         // )),
-          //                         value: SlotDetails[selectedcity]![i],
-          //                         onChanged: (value) {
-          //                           setState(() {
-          //                             SlotDetails[selectedcity]![i] = true;
-          //                             OccupiedSlots[selectedcity] =
-          //                                 OccupiedSlots[selectedcity]! + 1;
-          //                           });
-          //                         },
-          //                       ),
-          //                     ],
-          //                   ),
-          //                 ),
-
-          //                 // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
-          //               ],
-          //             ),
-
-          //         //Make an else to avoid empty space box
-
-          //       ],
-          //     ),
-          //   ),
-          // ),
           Divider(color: Colors.black, thickness: 2),
           SizedBox(height: 10),
           Row(
@@ -279,7 +225,7 @@ class _firstpageState extends State<firstpage> {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 70),
           ElevatedButton(
             onPressed: () {
               setState(() {
