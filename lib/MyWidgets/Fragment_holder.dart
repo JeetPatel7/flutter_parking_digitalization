@@ -71,23 +71,40 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   ];
   @override
   Widget build(BuildContext context) {
-    return (
-      MaterialApp(
-         debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: Navigator(
+                initialRoute: '/',
+
+                onGenerateRoute: (RouteSettings settings) {
+                  WidgetBuilder builder;
+                  switch (settings.name) {
+                    case '/':
+                      builder = (BuildContext _) => firstpage(parkingdata: Data);
+                      break;
+                    case '/edit':
+                      builder = (BuildContext _) => Editpage(parkingdata: Data);
+                      break;
+                    default:
+                      throw Exception('Invalid route: ${settings.name}');
+                  }
+                   return MaterialPageRoute(builder: builder, settings: settings);
+                },
+              )
+            )
+          ],
+        ), 
+    
+      )
+    );
       
-      //   // body:FragmentPlaceHolder(),
-      // )
-      // ),
-      initialRoute: '/',
-        routes: {
-        '/': (context) =>  firstpage(  parkingdata: Data),
-        '/edit': (context) =>  Editpage(parkingdata: Data),
-        },
-        )
-      );
   }
 }
 
-void main() {
-  runApp(const FragmentPlaceHolder());
-}
+// void main() {
+//   runApp(const FragmentPlaceHolder());
+// }

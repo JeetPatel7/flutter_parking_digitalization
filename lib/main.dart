@@ -8,20 +8,28 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // home: Scaffold(
-      //   // body:FragmentPlaceHolder(),
-      // )
-      // ),
-      // initialRoute: '/',
-      
-        routes: {
-        '/': (context) =>  firstpage(  parkingdata: Data),
-        '/edit': (context) =>  Editpage(parkingdata: Data),
-        },
-        )
-    );
-  //runApp(MyApp());
+  // runApp(
+  //   MaterialApp(
+  //     debugShowCheckedModeBanner: false,
+  //     home: Scaffold(
+  //       body:FragmentPlaceHolder(),
+  //     ),
+  //     initialRoute: '/',
+  //     onGenerateRoute: (settings) {
+  //       if (settings.name == '/') {
+  //         return MaterialPageRoute(
+  //           builder: (context) => FragmentPlaceHolder(),
+  //         );
+  //       } else if (settings.name == '/edit') {
+  //         final parkingdata = settings.arguments as List<CityParking>;
+  //         return MaterialPageRoute(
+  //           builder: (context) => Editpage(parkingdata: Data),
+  //         );
+  //       }
+  //       return null;
+  //     },
+
+  //     ),
+  //   );
+  runApp(FragmentPlaceHolder());
 }
