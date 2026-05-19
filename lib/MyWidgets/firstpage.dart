@@ -80,13 +80,13 @@ class _firstpageState extends State<firstpage> {
           ),
           Divider(color: Colors.black, thickness: 2),
           Row(
-            spacing: 105,
+            spacing: 80,
             children: [
               Row(
                 children: [
                   Text(
                     "Total Slots:${Slots[selectedcity]}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],
               ),
@@ -95,9 +95,10 @@ class _firstpageState extends State<firstpage> {
                 children: [
                   Text("Select City: ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                   DropdownButton(
+                    focusColor: Colors.grey,
                     value: selectedcity,
                     items: Cities.map((c) {
-                      return DropdownMenuItem(value: c, child: Text(c));
+                      return DropdownMenuItem(value: c, child: Text(c),);
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
@@ -118,6 +119,7 @@ class _firstpageState extends State<firstpage> {
           //   ],
           // ),
           Divider(color: Colors.black, thickness: 2),
+          SizedBox(height: 10),
           Row(
             children: [
               Text(
@@ -126,6 +128,7 @@ class _firstpageState extends State<firstpage> {
               ),
             ],
           ),
+          SizedBox(height: 10),
           Container(
             height: 250,
             width: 470,
@@ -164,7 +167,7 @@ class _firstpageState extends State<firstpage> {
                             // margin: EdgeInsets.only(left: 10),
                             padding: EdgeInsets.only(left: 15),
                             height: 40,
-                            width: 425,
+                            width: 355,
                             decoration: BoxDecoration(
                               color: const Color(0xFF74ABE2),
                               borderRadius: BorderRadius.circular(10),
@@ -205,6 +208,7 @@ class _firstpageState extends State<firstpage> {
             ),
           ),
           Divider(color: Colors.black, thickness: 2),
+          SizedBox(height: 10),
           Row(
             children: [
               Text(
