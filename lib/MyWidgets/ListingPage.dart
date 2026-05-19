@@ -40,8 +40,8 @@ class _firstpageState extends State<firstpage> {
       8: true,
       9: false,
       10: true,
-      12: true,
-      11: false,
+      11: true,
+      12: false,
     },
     // "Vadodara": {1: true, 2: false, 3: true, 4: true, 5: false},
     // "Gandhinagar": {1: false, 2: true, 3: false, 4: true, 5: true},
@@ -66,6 +66,13 @@ class _firstpageState extends State<firstpage> {
     "Surat": 5,
     // "Vadodara": 40,
     // "Gandhinagar": 30,
+  };
+  Map<String,List<String>> Address = {
+    "Rajkot": ["Address 1", "Address 2", "Address 3"],
+    "Ahmedabad": ["Address 4", "Address 5", "Address 6"],
+    "Surat": ["Address 7", "Address 8", "Address 9"],
+    // "Vadodara": ["Address 10", "Address 11", "Address 12"],
+    // "Gandhinagar": ["Address 13", "Address 14", "Address 15"],
   };
 
   String selectedcity = "Rajkot";
@@ -93,12 +100,15 @@ class _firstpageState extends State<firstpage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Select City: ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  Text(
+                    "Select City: ",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                   DropdownButton(
                     focusColor: Colors.grey,
                     value: selectedcity,
                     items: Cities.map((c) {
-                      return DropdownMenuItem(value: c, child: Text(c),);
+                      return DropdownMenuItem(value: c, child: Text(c));
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
@@ -143,24 +153,8 @@ class _firstpageState extends State<firstpage> {
               child: Column(
                 spacing: 18,
                 children: [
-                  // Expanded(
-                  //  ListView.builder(
-                  //   // shrinkWrap: true,
-                  //   // physics: NeverScrollableScrollPhysics(),
-                  //   itemCount: AvailableSlots[selectedcity],
-                  //   itemBuilder: (context, index) {
-                  //     int slotNumber = index + 1;
-                  //     // bool isOccupied = SlotDetails[selectedcity]![slotNumber]!;
-                  //     return Row(
-                  //       children: [
-                  //         // Text()
-                  //       ],
-                  //     );
-                  //   },
-                  // ),
-                  // ),
                   for (int i = 1; i <= Slots[selectedcity]!; i++)
-                    if (SlotDetails[selectedcity]![i] == false)
+                    // if (SlotDetails[selectedcity]![i] == false)
                       Row(
                         children: [
                           Container(
@@ -176,7 +170,7 @@ class _firstpageState extends State<firstpage> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Slot $i: ",
+                                  "Slot $i",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,
@@ -185,10 +179,15 @@ class _firstpageState extends State<firstpage> {
                                 ),
 
                                 Checkbox(
+                                  // title: Text("Slot $i: ",style: TextStyle(
+                                  //   fontSize: 20,
+                                  //   fontWeight: FontWeight.w500,
+                                  //   color: Colors.black,
+                                  // )),
                                   value: false,
                                   onChanged: (value) {
                                     setState(() {
-                                      SlotDetails[selectedcity]![i] = value!;
+                                      SlotDetails[selectedcity]![i] = true;
                                       OccupiedSlots[selectedcity] =
                                           OccupiedSlots[selectedcity]! + 1;
                                     });
@@ -207,6 +206,65 @@ class _firstpageState extends State<firstpage> {
               ),
             ),
           ),
+          // SingleChildScrollView(
+          //   child: Container(
+          //     child: Column(
+          //       children: [
+          //         for (int i = 1; i <= Slots[selectedcity]!; i++)
+          //           // if (SlotDetails[selectedcity]![i] == false)
+          //             Row(
+          //               children: [
+          //                 Container(
+          //                   // margin: EdgeInsets.only(left: 10),
+          //                   padding: EdgeInsets.only(left: 15),
+          //                   height: 40,
+          //                   width: 355,
+          //                   decoration: BoxDecoration(
+          //                     color: const Color(0xFF74ABE2),
+          //                     borderRadius: BorderRadius.circular(10),
+          //                     border:
+          //                         Border.all(color: Colors.black, width: 2),
+          //                   ),
+          //                   child: Row(
+          //                     children: [
+          //                       Text(
+          //                         "Slot $i",
+          //                         style: TextStyle(
+          //                           fontSize: 20,
+          //                           fontWeight: FontWeight.w500,
+          //                           color: Colors.black,
+          //                         ),
+          //                       ),
+
+          //                       Checkbox(
+          //                         // title: Text("Slot $i: ",style: TextStyle(
+          //                         //   fontSize: 20,
+          //                         //   fontWeight: FontWeight.w500,
+          //                         //   color: Colors.black,
+          //                         // )),
+          //                         value: SlotDetails[selectedcity]![i],
+          //                         onChanged: (value) {
+          //                           setState(() {
+          //                             SlotDetails[selectedcity]![i] = true;
+          //                             OccupiedSlots[selectedcity] =
+          //                                 OccupiedSlots[selectedcity]! + 1;
+          //                           });
+          //                         },
+          //                       ),
+          //                     ],
+          //                   ),
+          //                 ),
+
+          //                 // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
+          //               ],
+          //             ),
+
+          //         //Make an else to avoid empty space box
+
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Divider(color: Colors.black, thickness: 2),
           SizedBox(height: 10),
           Row(
@@ -221,12 +279,23 @@ class _firstpageState extends State<firstpage> {
               ),
             ],
           ),
-          SizedBox(height: 10),
-          ElevatedButton(onPressed: () {
-            setState(() {
-              Cities.remove('selectedcity');
-            });
-          }, child: Text("Delete City")),
+          SizedBox(height: 15),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                Cities.remove(selectedcity);
+                selectedcity = Cities[1];
+                OccupiedSlots.remove('selectedcity');
+                Slots.remove('selectedcity');
+                AvailableSlots.remove('selectedcity');
+                SlotDetails.remove('selectedcity');
+              });
+            },
+            child: Container(
+              width: 100,
+              child: Row(spacing: 7,  children: [Icon(Icons.delete), Text("Delete City")],),
+            ),
+          ),
         ],
       ),
     );
