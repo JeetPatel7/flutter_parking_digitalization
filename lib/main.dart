@@ -1,5 +1,6 @@
 //fkdsvfjefefkg
 import 'package:flutter/material.dart';
+import 'package:parking_digitalization/MyWidgets/Fragment_holder.dart';
 import 'package:parking_digitalization/MyWidgets/ListingPage.dart';
 
 
@@ -8,7 +9,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body:firstpage(),
+        body:FragmentPlaceHolder(),
         
           
         ),
