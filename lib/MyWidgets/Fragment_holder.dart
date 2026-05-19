@@ -18,7 +18,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       occupiedSlots: 6,
       availableSlots: 4,
 
-      address: ["Address 1", "Address 2", "Address 3"],
+      area: ["Area 1", "Area 2", "Area 3"],
 
       slotDetails: {
         1: true,
@@ -40,7 +40,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       occupiedSlots: 3,
       availableSlots: 2,
 
-      address: ["Address 4", "Address 5", "Address 6"],
+      area: ["Area 4", "Area 5", "Area 6"],
 
       slotDetails: {1: true, 2: true, 3: false, 4: true, 5: false},
     ),
@@ -51,7 +51,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       occupiedSlots: 7,
       availableSlots: 5,
 
-      address: ["Address 7", "Address 8", "Address 9"],
+      area: ["Area 7", "Area 8", "Area 9"],
 
       slotDetails: {
         1: false,

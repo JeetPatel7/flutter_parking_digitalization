@@ -12,6 +12,7 @@ class firstpage extends StatefulWidget {
 class firstpageState extends State<firstpage> {
  
   String selectedcity = "Rajkot";
+  // String selectedarea = widget.parkingdata[0].area[0];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +28,7 @@ class firstpageState extends State<firstpage> {
           Divider(color: Colors.black, thickness: 2),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            spacing: 80,
+            spacing: 150,
             children: [
               Row(
                 // mainAxisAlignment: MainAxisAlignment.end,
@@ -48,6 +49,19 @@ class firstpageState extends State<firstpage> {
                       });
                     },
                   ),
+                  // Text("Selec Area: ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  // DropdownButton(
+                  //   focusColor: Colors.grey,
+                  //   value: selectedarea,
+                  //   items: widget.parkingdata.map((parking) {
+                  //     return DropdownMenuItem(value: parking.cityName, child: Text(parking.cityName));
+                  //   }).toList(),
+                  //   onChanged: (value) {
+                  //     setState(() {
+                  //       selectedcity = value!;
+                  //     });
+                  //   },
+                  // ),
                 ],
               ),
             ],

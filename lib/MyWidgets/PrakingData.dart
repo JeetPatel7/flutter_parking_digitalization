@@ -3,7 +3,7 @@ class CityParking {
   int totalSlots;
   int occupiedSlots;
   int availableSlots;
-  List<String> address;
+  List<String> area;
   Map<int, bool> slotDetails;
 
   CityParking({
@@ -11,7 +11,7 @@ class CityParking {
     required this.totalSlots,
     required this.occupiedSlots,
     required this.availableSlots,
-    required this.address,
+    required this.area,
     required this.slotDetails,
   });
 }
