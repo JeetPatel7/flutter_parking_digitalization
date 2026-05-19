@@ -67,7 +67,7 @@ class _firstpageState extends State<firstpage> {
     // "Vadodara": 40,
     // "Gandhinagar": 30,
   };
-  Map<String,List<String>> Address = {
+  Map<String, List<String>> Address = {
     "Rajkot": ["Address 1", "Address 2", "Address 3"],
     "Ahmedabad": ["Address 4", "Address 5", "Address 6"],
     "Surat": ["Address 7", "Address 8", "Address 9"],
@@ -87,18 +87,11 @@ class _firstpageState extends State<firstpage> {
           ),
           Divider(color: Colors.black, thickness: 2),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             spacing: 80,
             children: [
               Row(
-                children: [
-                  Text(
-                    "Total Slots:${Slots[selectedcity]}",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     "Select City: ",
@@ -155,56 +148,56 @@ class _firstpageState extends State<firstpage> {
                 children: [
                   for (int i = 1; i <= Slots[selectedcity]!; i++)
                     // if (SlotDetails[selectedcity]![i] == false)
-                      Row(
-                        children: [
-                          Container(
-                            // margin: EdgeInsets.only(left: 10),
-                            padding: EdgeInsets.only(left: 15),
-                            height: 40,
-                            width: 355,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF74ABE2),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.black, width: 2),
-                            ),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Slot $i",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black,
-                                  ),
-                                ),
-
-                                Checkbox(
-                                  // title: Text("Slot $i: ",style: TextStyle(
-                                  //   fontSize: 20,
-                                  //   fontWeight: FontWeight.w500,
-                                  //   color: Colors.black,
-                                  // )),
-                                  value: SlotDetails[selectedcity]![i],
-                                  onChanged: (value) {
-                                    setState(() {
-                                      SlotDetails[selectedcity]![i] = value!;
-                                      if (value!) {
-                                        OccupiedSlots[selectedcity] =
-                                            OccupiedSlots[selectedcity]! + 1;
-                                      } else {
-                                        OccupiedSlots[selectedcity] =
-                                            OccupiedSlots[selectedcity]! - 1;
-                                      }
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
+                    Row(
+                      children: [
+                        Container(
+                          // margin: EdgeInsets.only(left: 10),
+                          padding: EdgeInsets.only(left: 15),
+                          height: 40,
+                          width: 355,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF74ABE2),
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Colors.black, width: 2),
                           ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Slot $i",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
 
-                          // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
-                        ],
-                      ),
+                              Checkbox(
+                                // title: Text("Slot $i: ",style: TextStyle(
+                                //   fontSize: 20,
+                                //   fontWeight: FontWeight.w500,
+                                //   color: Colors.black,
+                                // )),
+                                value: SlotDetails[selectedcity]![i],
+                                onChanged: (value) {
+                                  setState(() {
+                                    SlotDetails[selectedcity]![i] = value!;
+                                    if (value) {
+                                      OccupiedSlots[selectedcity] =
+                                          OccupiedSlots[selectedcity]! + 1;
+                                    } else {
+                                      AvailableSlots[selectedcity] =
+                                          AvailableSlots[selectedcity]! + 1;
+                                    }
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Text(SlotDetails[selectedcity]![i]==false ? "Slot $i" : ""),
+                      ],
+                    ),
 
                   //Make an else to avoid empty space box
                 ],
@@ -213,19 +206,96 @@ class _firstpageState extends State<firstpage> {
           ),
           Divider(color: Colors.black, thickness: 2),
           SizedBox(height: 10),
+          // Row(
+          //   children: [
+          //     Text(
+          //       "Occupied Slots: ",
+          //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          //     ),
+          //     Text(
+          //       OccupiedSlots[selectedcity].toString(),
+          //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          //     ),
+          //   ],
+          // ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 50,
             children: [
-              Text(
-                "Occupied Slots: ",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    padding: EdgeInsets.only(left: 8,top: 12),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 54, 130, 244),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.black, width: 2),
+                    ),
+                    child: Text(
+                      " ${Slots[selectedcity]}",
+                      style: TextStyle(fontSize: 50),
+                    ),
+                  ),
+                  Text(
+                    "Total",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
               ),
-              Text(
-                OccupiedSlots[selectedcity].toString(),
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    padding: EdgeInsets.only(left: 8,top: 12),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(236, 69, 244, 110),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.black, width: 2),
+                    ),
+                    child: Text(
+                      " ${AvailableSlots[selectedcity]}",
+                      style: TextStyle(fontSize: 55),
+                    ),
+                  ),
+                  Text(
+                    "Free",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
+              ),
+
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    padding: EdgeInsets.only(left: 8,top: 12),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(166, 244, 67, 54),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.black, width: 2),
+                    ),
+                    child:
+                       Text(
+                        " ${OccupiedSlots[selectedcity]}",
+                        style: TextStyle(fontSize: 55),
+                      ),
+                    
+                  ),
+                  Text(
+                    "Occupied",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
               ),
             ],
           ),
-          SizedBox(height: 70),
+
+          SizedBox(height: 10),
           ElevatedButton(
             onPressed: () {
               setState(() {
@@ -239,7 +309,10 @@ class _firstpageState extends State<firstpage> {
             },
             child: Container(
               width: 100,
-              child: Row(spacing: 7,  children: [Icon(Icons.delete), Text("Delete City")],),
+              child: Row(
+                spacing: 7,
+                children: [Icon(Icons.delete), Text("Delete City")],
+              ),
             ),
           ),
         ],
