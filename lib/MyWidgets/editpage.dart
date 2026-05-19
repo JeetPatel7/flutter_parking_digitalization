@@ -12,6 +12,6 @@ class Editpage extends StatefulWidget {
 class _EditpageState extends State<Editpage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Text("avgsauagsaglfu");
   }
 }

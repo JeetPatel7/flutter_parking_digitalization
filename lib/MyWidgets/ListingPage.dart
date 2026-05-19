@@ -6,78 +6,11 @@ class firstpage extends StatefulWidget {
   const firstpage({super.key,required this.parkingdata});
 
   @override
-  State<firstpage> createState() => _firstpageState();
+  State<firstpage> createState() => firstpageState();
 }
 
-class _firstpageState extends State<firstpage> {
-  // Map<String, int> Slots = {
-  //   "Rajkot": 10,
-  //   "Ahmedabad": 5,
-  //   "Surat": 12,
-  //   // "Vadodara": 80,
-  //   // "Gandhinagar": 50,
-  // };
-  // Map<String, Map<int, bool>> SlotDetails = {
-  //   "Rajkot": {
-  //     1: true,
-  //     2: false,
-  //     3: true,
-  //     4: false,
-  //     5: true,
-  //     6: true,
-  //     7: false,
-  //     8: true,
-  //     9: false,
-  //     10: true,
-  //   },
-  //   "Ahmedabad": {1: true, 2: true, 3: false, 4: true, 5: false},
-  //   "Surat": {
-  //     1: false,
-  //     2: true,
-  //     3: true,
-  //     4: false,
-  //     5: true,
-  //     6: true,
-  //     7: false,
-  //     8: true,
-  //     9: false,
-  //     10: true,
-  //     11: true,
-  //     12: false,
-  //   },
-  //   // "Vadodara": {1: true, 2: false, 3: true, 4: true, 5: false},
-  //   // "Gandhinagar": {1: false, 2: true, 3: false, 4: true, 5: true},
-  // };
-  // Map<String, int> OccupiedSlots = {
-  //   "Rajkot": 6,
-  //   "Ahmedabad": 3,
-  //   "Surat": 7,
-  //   // "Vadodara": 40,
-  //   // "Gandhinagar": 30,
-  // };
-  // List<String> Cities = [
-  //   "Rajkot",
-  //   "Ahmedabad",
-  //   "Surat",
-  //   // "Vadodara",
-  //   // "Gandhinagar",
-  // ];
-  // Map<String, int> AvailableSlots = {
-  //   "Rajkot": 4,
-  //   "Ahmedabad": 2,
-  //   "Surat": 5,
-  //   // "Vadodara": 40,
-  //   // "Gandhinagar": 30,
-  // };
-  
-  // Map<String, List<String>> Address = {
-  //   "Rajkot": ["Address 1", "Address 2", "Address 3"],
-  //   "Ahmedabad": ["Address 4", "Address 5", "Address 6"],
-  //   "Surat": ["Address 7", "Address 8", "Address 9"],
-  //   // "Vadodara": ["Address 10", "Address 11", "Address 12"],
-  //   // "Gandhinagar": ["Address 13", "Address 14", "Address 15"],
-  // };
-
+class firstpageState extends State<firstpage> {
+ 
   String selectedcity = "Rajkot";
   @override
   Widget build(BuildContext context) {
@@ -87,8 +20,8 @@ class _firstpageState extends State<firstpage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Editpage(parkingdata: widget.parkingdata,)));
-
+              Navigator.pushNamed(context, '/edit',arguments: widget.parkingdata);
+              
             }, icon: Icon(Icons.add))],
           ),
           Divider(color: Colors.black, thickness: 2),

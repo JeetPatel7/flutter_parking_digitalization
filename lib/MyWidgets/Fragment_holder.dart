@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/ListingPage.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
+import 'package:parking_digitalization/MyWidgets/editpage.dart';
 
 class FragmentPlaceHolder extends StatefulWidget {
   const FragmentPlaceHolder({super.key});
 
   @override
-  State<FragmentPlaceHolder> createState() => _FragmentPlaceHolderState();
+  State<FragmentPlaceHolder> createState() => FragmentPlaceHolderState();
 }
 
-class _FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
+class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   List<CityParking> Data = [
     CityParking(
       cityName: "Rajkot",
@@ -70,20 +71,23 @@ class _FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // firstpage(parkingdata: Data),
-        Navigator(  
-          onGenerateRoute: (settings) {
-            return MaterialPageRoute(
-              builder: (context) => firstpage(parkingdata: Data),
-
-            );
-            
-
-
-          },
-        ),
-        ]);
+    return (
+      MaterialApp(
+         debugShowCheckedModeBanner: false,
+      
+      //   // body:FragmentPlaceHolder(),
+      // )
+      // ),
+      initialRoute: '/',
+        routes: {
+        '/': (context) =>  firstpage(  parkingdata: Data),
+        '/edit': (context) =>  Editpage(parkingdata: Data),
+        },
+        )
+      );
   }
+}
+
+void main() {
+  runApp(const FragmentPlaceHolder());
 }
