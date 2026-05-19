@@ -180,11 +180,26 @@ class _firstpageState extends State<firstpage> {
                                 value: SlotDetails[selectedcity]![i],
                                 onChanged: (value) {
                                   setState(() {
+                                    bool oldValue =
+                                        SlotDetails[selectedcity]![i]!;
+
+                                    // update checkbox value
                                     SlotDetails[selectedcity]![i] = value!;
-                                    if (value) {
+
+                                    // if free -> occupied
+                                    if (oldValue == false && value == true) {
                                       OccupiedSlots[selectedcity] =
                                           OccupiedSlots[selectedcity]! + 1;
-                                    } else {
+
+                                      AvailableSlots[selectedcity] =
+                                          AvailableSlots[selectedcity]! - 1;
+                                    }
+                                    // if occupied -> free
+                                    else if (oldValue == true &&
+                                        value == false) {
+                                      OccupiedSlots[selectedcity] =
+                                          OccupiedSlots[selectedcity]! - 1;
+
                                       AvailableSlots[selectedcity] =
                                           AvailableSlots[selectedcity]! + 1;
                                     }
@@ -227,7 +242,7 @@ class _firstpageState extends State<firstpage> {
                   Container(
                     height: 100,
                     width: 100,
-                    padding: EdgeInsets.only(left: 8,top: 12),
+                    padding: EdgeInsets.only(left: 8, top: 12),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 54, 130, 244),
                       borderRadius: BorderRadius.circular(15),
@@ -250,7 +265,7 @@ class _firstpageState extends State<firstpage> {
                   Container(
                     height: 100,
                     width: 100,
-                    padding: EdgeInsets.only(left: 8,top: 12),
+                    padding: EdgeInsets.only(left: 8, top: 12),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(236, 69, 244, 110),
                       borderRadius: BorderRadius.circular(15),
@@ -273,18 +288,16 @@ class _firstpageState extends State<firstpage> {
                   Container(
                     height: 100,
                     width: 100,
-                    padding: EdgeInsets.only(left: 8,top: 12),
+                    padding: EdgeInsets.only(left: 8, top: 12),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(166, 244, 67, 54),
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.black, width: 2),
                     ),
-                    child:
-                       Text(
-                        " ${OccupiedSlots[selectedcity]}",
-                        style: TextStyle(fontSize: 55),
-                      ),
-                    
+                    child: Text(
+                      " ${OccupiedSlots[selectedcity]}",
+                      style: TextStyle(fontSize: 55),
+                    ),
                   ),
                   Text(
                     "Occupied",
