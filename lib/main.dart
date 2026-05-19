@@ -34,17 +34,20 @@ void main() {
           
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 35,left: 10)),
+              Padding(padding: EdgeInsets.only(top: 30,left: 10)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Version 1.0",
-                        style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromARGB(154, 0, 0, 0),
-                              letterSpacing: 1,
-                              fontSize: 12)
-                        )
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Text("Version 1.0",
+                          style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: const Color.fromARGB(183, 0, 0, 0),
+                                letterSpacing: 1,
+                                fontSize: 12)
+                          ),
+                  )
                 ],
               ),
 
@@ -105,14 +108,14 @@ void main() {
                 Spacer(),
 
                Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 40),
 
                 child: Text(
                   "© 2026 Smart Parking Solutions",
 
                   style: TextStyle(
                     fontSize: 13,
-                    color: const Color.fromARGB(119, 0, 0, 0),
+                    color: const Color.fromARGB(161, 0, 0, 0),
                     letterSpacing: 2,
                                   )
                             )
