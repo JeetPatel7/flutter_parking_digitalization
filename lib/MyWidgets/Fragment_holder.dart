@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/ListingPage.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 import 'package:parking_digitalization/MyWidgets/editpage.dart';
+import 'package:parking_digitalization/MyWidgets/splash_screen.dart';
 
 class FragmentPlaceHolder extends StatefulWidget {
   const FragmentPlaceHolder({super.key});
@@ -11,6 +14,8 @@ class FragmentPlaceHolder extends StatefulWidget {
 }
 
 class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   List<CityParking> Data = [
     CityParking(
       cityName: "Rajkot",
@@ -58,6 +63,16 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
     ),
   ];
   @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 2), () {
+      navigatorKey.currentState?.pushReplacement(
+        MaterialPageRoute(builder: (context) => _buildMainNavigator()),
+      );
+    });
+  }
+
+  @override
 
 // Future<void> _navigateAndGetNewData() async {
 //     // Open the Add Page and wait for a result
@@ -72,42 +87,41 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
 //   }
 
   Widget build(BuildContext context) {
-    // setState((val) {
-    //   onchange: (value) {
-    //     Data = value;
-    //   };
-    // });
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: Navigator(
-                initialRoute: '/',
-
-                onGenerateRoute: (RouteSettings settings) {
-                  WidgetBuilder builder;
-                  switch (settings.name) {
-                    case '/':
-                      builder = (BuildContext _) => firstpage(parkingdata: Data);
-                      break;
-                    case '/edit':
-                      builder = (BuildContext _) => Editpage(parkingdata: Data);
-                      break;
-                    default:
-                      throw Exception('Invalid route: ${settings.name}');
-                  }
-                   return MaterialPageRoute(builder: builder, settings: settings);
-                },
-              )
-            )
-          ],
-        ), 
-    
-      )
+        body: const SplashScreen(),
+      ),
     );
-      
+  }
+
+  Widget _buildMainNavigator() {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Navigator(
+              initialRoute: '/',
+              onGenerateRoute: (RouteSettings settings) {
+                WidgetBuilder builder;
+                switch (settings.name) {
+                  case '/':
+                    builder = (BuildContext _) => firstpage(parkingdata: Data);
+                    break;
+                  case '/edit':
+                    builder = (BuildContext _) => Editpage(parkingdata: Data);
+                    break;
+                  default:
+                    throw Exception('Invalid route: ${settings.name}');
+                }
+                return MaterialPageRoute(builder: builder, settings: settings);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

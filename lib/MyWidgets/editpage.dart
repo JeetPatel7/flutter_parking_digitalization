@@ -136,11 +136,27 @@ class _EditpageState extends State<Editpage> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: () {
+                      final String cityName = city.trim();
+                      final bool cityExists = widget.parkingdata.any(
+                        (parking) =>
+                            parking.cityName.toLowerCase() ==
+                            cityName.toLowerCase(),
+                      );
+
+                      if (cityExists) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("City already exist"),
+                          ),
+                        );
+                        return;
+                      }
+
                       final int slotCount = int.parse(slots);
 
                       widget.parkingdata.add(
                         CityParking(
-                          cityName: city.trim(),
+                          cityName: cityName,
                           totalSlots: slotCount,
                           occupiedSlots: 0,
                           availableSlots: slotCount,
