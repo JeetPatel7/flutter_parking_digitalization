@@ -64,12 +64,12 @@ class firstpageState extends State<firstpage> {
                             arguments: widget.parkingdata,
                           );
 
-                          // if (result == true && widget.parkingdata.isNotEmpty) {
-                          //   setState(() {
-                          //     selectedcity = widget.parkingdata.last.cityName;
-                          //     selectedarea = widget.parkingdata.last.area.first;
-                          //   });
-                          // }
+                          if (result == true && widget.parkingdata.isNotEmpty) {
+                            setState(() {
+                              selectedcity = widget.parkingdata.first.cityName;
+                              selectedarea = widget.parkingdata.first.area.first;
+                            });
+                          }
                         },
                         icon: Row(
                           children: [
@@ -94,8 +94,8 @@ class firstpageState extends State<firstpage> {
 
                           if (result == true && widget.parkingdata.isNotEmpty) {
                             setState(() {
-                              selectedcity = widget.parkingdata.last.cityName;
-                              selectedarea = widget.parkingdata.last.area.first;
+                              selectedcity = widget.parkingdata.first.cityName;
+                              selectedarea = widget.parkingdata.first.area.first;
                             });
                           }
                         },
@@ -139,7 +139,7 @@ class firstpageState extends State<firstpage> {
                                   ),
                                 ),
                                 DropdownButton(
-                                  
+                                  menuMaxHeight: 200,
                                   focusColor: Colors.grey,
                                   value: selectedcity,
                                   items: widget.parkingdata.map((parking) {
@@ -182,6 +182,7 @@ class firstpageState extends State<firstpage> {
                                 ),
                               ),
                               DropdownButton(
+                                menuMaxHeight: 200,
                                 focusColor: Colors.grey,
                                 value: selectedarea,
                                 items: widget.parkingdata

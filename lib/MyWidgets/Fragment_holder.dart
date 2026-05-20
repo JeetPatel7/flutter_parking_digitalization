@@ -27,9 +27,43 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       area: ["Area 1", "Area 2", "Area 3"],
 
       slotDetails: {
-        "Area 1": {1: true, 2: false, 3: true, 4: false, 5: true, 6: false, 7: true, 8: false},
-        "Area 2": {1: false, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false, 8: true, 9: true, 10: false, 11: true, 12: true},
-        "Area 3": {1: true, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false, 8: true, 9: false, 10: true, 11: false},
+        "Area 1": {
+          1: true,
+          2: false,
+          3: true,
+          4: false,
+          5: true,
+          6: false,
+          7: true,
+          8: false,
+        },
+        "Area 2": {
+          1: false,
+          2: true,
+          3: false,
+          4: true,
+          5: false,
+          6: true,
+          7: false,
+          8: true,
+          9: true,
+          10: false,
+          11: true,
+          12: true,
+        },
+        "Area 3": {
+          1: true,
+          2: true,
+          3: false,
+          4: true,
+          5: false,
+          6: true,
+          7: false,
+          8: true,
+          9: false,
+          10: true,
+          11: false,
+        },
       },
     ),
 
@@ -42,9 +76,43 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       area: ["Area 4", "Area 5", "Area 6"],
 
       slotDetails: {
-        "Area 4": {1: true, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false},
-        "Area 5": {1: false, 2: true, 3: true, 4: false, 5: true, 6: false, 7: true, 8: false, 9: true},
-        "Area 6": {1: true, 2: false, 3: true, 4: false, 5: true, 6: false, 7: true, 8: true, 9: false, 10: true, 11: false, 12: true, 13: false, 14: true, 15: false},
+        "Area 4": {
+          1: true,
+          2: true,
+          3: false,
+          4: true,
+          5: false,
+          6: true,
+          7: false,
+        },
+        "Area 5": {
+          1: false,
+          2: true,
+          3: true,
+          4: false,
+          5: true,
+          6: false,
+          7: true,
+          8: false,
+          9: true,
+        },
+        "Area 6": {
+          1: true,
+          2: false,
+          3: true,
+          4: false,
+          5: true,
+          6: false,
+          7: true,
+          8: true,
+          9: false,
+          10: true,
+          11: false,
+          12: true,
+          13: false,
+          14: true,
+          15: false,
+        },
       },
     ),
 
@@ -57,9 +125,49 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       area: ["Area 7", "Area 8", "Area 9"],
 
       slotDetails: {
-        "Area 7": {1: false, 2: true, 3: true, 4: false, 5: true, 6: false, 7: true, 8: true, 9: false, 10: true, 11: false, 12: true, 13: true, 14: false},
-        "Area 8": {1: true, 2: false, 3: true, 4: true, 5: false, 6: true, 7: false, 8: true, 9: false, 10: true},
-        "Area 9": {1: false, 2: true, 3: false, 4: true, 5: false, 6: true, 7: true, 8: false, 9: true, 10: false, 11: true, 12: false, 13: true},
+        "Area 7": {
+          1: false,
+          2: true,
+          3: true,
+          4: false,
+          5: true,
+          6: false,
+          7: true,
+          8: true,
+          9: false,
+          10: true,
+          11: false,
+          12: true,
+          13: true,
+          14: false,
+        },
+        "Area 8": {
+          1: true,
+          2: false,
+          3: true,
+          4: true,
+          5: false,
+          6: true,
+          7: false,
+          8: true,
+          9: false,
+          10: true,
+        },
+        "Area 9": {
+          1: false,
+          2: true,
+          3: false,
+          4: true,
+          5: false,
+          6: true,
+          7: true,
+          8: false,
+          9: true,
+          10: false,
+          11: true,
+          12: false,
+          13: true,
+        },
       },
     ),
   ];
@@ -74,26 +182,21 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   }
 
   @override
-
-// Future<void> _navigateAndGetNewData() async {
-//     // Open the Add Page and wait for a result
-//      final result = await Navigator.pushNamed(context, '/edit');
-
-//     // 3. If a valid item was sent back, inject it and trigger UI refresh
-//     // if (result != null && result is CityParking) {
-//       setState(() {
-//         // Data.add(result); 
-//       });
-//     }
-//   }
-
+  // Future<void> _navigateAndGetNewData() async {
+  //     // Open the Add Page and wait for a result
+  //      final result = await Navigator.pushNamed(context, '/edit');
+  //     // 3. If a valid item was sent back, inject it and trigger UI refresh
+  //     // if (result != null && result is CityParking) {
+  //       setState(() {
+  //         // Data.add(result);
+  //       });
+  //     }
+  //   }
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: const SplashScreen(),
-      ),
+      home: Scaffold(body: const SplashScreen()),
     );
   }
 
@@ -111,10 +214,10 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
                     builder = (BuildContext _) => firstpage(parkingdata: Data);
                     break;
                   case '/add':
-                    builder = (BuildContext _) =>Addpage(parkingdata: Data);
+                    builder = (BuildContext _) => Addpage(parkingdata: Data);
                     break;
                   case '/edit':
-                    builder = (BuildContext _) => editpage();
+                    builder = (BuildContext _) => editpage(parkingdata: Data);
                     break;
                   default:
                     throw Exception('Invalid route: ${settings.name}');
