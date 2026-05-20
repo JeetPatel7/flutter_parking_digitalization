@@ -3,6 +3,7 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 class Editpage extends StatefulWidget {
   final List<CityParking> parkingdata;
+  // final VoidCallback onaddpressed;
   const Editpage({super.key, required this.parkingdata});
 
   @override
@@ -138,6 +139,28 @@ class _EditpageState extends State<Editpage> {
                       print(city);
                       print(slots);
                       print(area);
+
+                      
+                      setState(() {
+                        // widget.parkingdata.add(
+                          CityParking newdata=CityParking(
+                            cityName: city,
+                            totalSlots: int.parse(slots),
+                            occupiedSlots: 0,
+                            availableSlots: int.parse(slots),
+                            area: [area],
+                            slotDetails: {
+                              area: {for (int i = 1; i <= int.parse(slots); i++) i: false},
+                            },
+                          );
+                        // );
+                        city = "";
+                        slots = "";
+                        clearcity.clear();
+                        clearslots.clear();
+                        cleararea.clear();
+                         Navigator.pop(context, newdata);
+                      });
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

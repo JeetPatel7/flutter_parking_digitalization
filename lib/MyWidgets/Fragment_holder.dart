@@ -58,7 +58,25 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
     ),
   ];
   @override
+
+// Future<void> _navigateAndGetNewData() async {
+//     // Open the Add Page and wait for a result
+//      final result = await Navigator.pushNamed(context, '/edit');
+
+//     // 3. If a valid item was sent back, inject it and trigger UI refresh
+//     if (result != null && result is CityParking) {
+//       setState(() {
+//         Data.add(result); 
+//       });
+//     }
+//   }
+
   Widget build(BuildContext context) {
+    // setState((val) {
+    //   onchange: (value) {
+    //     Data = value;
+    //   };
+    // });
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
