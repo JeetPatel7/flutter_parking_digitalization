@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/ListingPage.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
-import 'package:parking_digitalization/MyWidgets/editpage.dart';
+import 'package:parking_digitalization/MyWidgets/Addcity.dart';
 import 'package:parking_digitalization/MyWidgets/splash_screen.dart';
 
 class FragmentPlaceHolder extends StatefulWidget {

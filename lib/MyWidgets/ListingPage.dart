@@ -16,10 +16,10 @@ class firstpageState extends State<firstpage> {
   @override
   void initState() {
     super.initState();
-    selectedcity = widget.parkingdata[0].cityName;
+    selectedcity = widget.parkingdata.first.cityName;
     selectedarea = widget.parkingdata
         .firstWhere((p) => p.cityName == selectedcity)
-        .area[0];
+        .area.first;
   }
 
   @override
