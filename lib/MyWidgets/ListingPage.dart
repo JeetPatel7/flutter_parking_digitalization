@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
+import 'package:parking_digitalization/MyWidgets/editpage.dart';
 
 class firstpage extends StatefulWidget {
   final List<CityParking> parkingdata;
@@ -38,6 +39,7 @@ class firstpageState extends State<firstpage> {
     return Scaffold(
       body: Container(
         width: double.infinity,
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -52,16 +54,19 @@ class firstpageState extends State<firstpage> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            children: [
+                children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
+                      TextButton.icon(
                         onPressed: () async {
-                          final result = await Navigator.pushNamed(
+                          final result = await Navigator.push(
                             context,
-                            '/edit',
-                            arguments: widget.parkingdata,
+                            MaterialPageRoute(
+                              builder: (context) => Editpage(
+                                parkingdata: widget.parkingdata,
+                              ),
+                            ),
                           );
 
                           if (result == true && widget.parkingdata.isNotEmpty) {
@@ -71,28 +76,57 @@ class firstpageState extends State<firstpage> {
                             });
                           }
                         },
-                        icon: Row(
-                          children: [
-                            Text(
-                              "Add City",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
+                        icon: const Icon(Icons.location_city),
+                        label: const Text(
+                          "Add City",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      TextButton.icon(
+                        onPressed: () async {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Editpage(
+                                parkingdata: widget.parkingdata,
+                                isAddArea: true,
+                                selectedCity: selectedcity,
                               ),
                             ),
-                            Icon(Icons.edit),
-                          ],
+                          );
+
+                          if (result == true) {
+                            setState(() {
+                              selectedarea = widget.parkingdata
+                                  .firstWhere((p) => p.cityName == selectedcity)
+                                  .area
+                                  .last;
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.add_location_alt_outlined),
+                        label: const Text(
+                          "Add Area",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   Divider(color: Colors.black, thickness: 2),
                   Row(
-                    spacing: 150,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 20,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        spacing: 10,
+                        spacing: 6,
                         children: [
                           Container(
                             child: Row(
@@ -105,7 +139,7 @@ class firstpageState extends State<firstpage> {
                                   child: Text(
                                     "Select City: ",
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -119,7 +153,7 @@ class firstpageState extends State<firstpage> {
                                       value: parking.cityName,
                                       child: Text(
                                         parking.cityName,
-                                        style: TextStyle(fontSize: 18),
+                                        style: TextStyle(fontSize: 16),
                                       ),
                                     );
                                   }).toList(),
@@ -138,7 +172,7 @@ class firstpageState extends State<firstpage> {
                             ),
                           ),
                           Row(
-                            spacing: 10,
+                            spacing: 6,
                             children: [
                               Container(
                                 decoration: BoxDecoration(
@@ -148,7 +182,7 @@ class firstpageState extends State<firstpage> {
                                 child: Text(
                                   "Select Area",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -167,7 +201,7 @@ class firstpageState extends State<firstpage> {
                                     value: area,
                                     child: Text(                                   
                                       area,
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   );
                                 }).toList(),
@@ -201,10 +235,10 @@ class firstpageState extends State<firstpage> {
                   ),
                   SizedBox(height: 10),
                   Container(
-                    height: 500,
-                    width: 470,
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(15),
+                    height: 420,
+                    width: 410,
+                    margin: EdgeInsets.fromLTRB(14, 14, 14, 8),
+                    padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(28, 85, 99, 222),
                       borderRadius: BorderRadius.circular(10),
@@ -218,9 +252,9 @@ class firstpageState extends State<firstpage> {
                             Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.only(left: 15),
+                                  padding: EdgeInsets.only(left: 12),
                                   height: 40,
-                                  width: 355,
+                                  width: 320,
                                   decoration: BoxDecoration(
                                     color: const Color.fromARGB(
                                       161,
@@ -235,16 +269,15 @@ class firstpageState extends State<firstpage> {
                                     ),
                                   ),
                                   child: Row(
-                                    spacing: 210,
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(left: 13),
+                                        padding: EdgeInsets.only(left: 10),
                                         child: Text(
                                           "Slot $i",
                                           style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black,
                                           ),
@@ -271,13 +304,13 @@ class firstpageState extends State<firstpage> {
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 50,
+                    spacing: 24,
                     children: [
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 92,
+                            width: 92,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(147, 54, 130, 244),
@@ -289,14 +322,14 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $totalSlots",
-                              style: TextStyle(fontSize: 50),
+                              style: TextStyle(fontSize: 42),
                             ),
                           ),
                           Text(
                             "Total",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -304,8 +337,8 @@ class firstpageState extends State<firstpage> {
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 92,
+                            width: 92,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(109, 69, 244, 110),
@@ -317,14 +350,14 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $availableSlots",
-                              style: TextStyle(fontSize: 55),
+                              style: TextStyle(fontSize: 42),
                             ),
                           ),
                           Text(
                             "Free",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -332,8 +365,8 @@ class firstpageState extends State<firstpage> {
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 92,
+                            width: 92,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(105, 244, 67, 54),
@@ -345,30 +378,35 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $occupiedSlots",
-                              style: TextStyle(fontSize: 55),
+                              style: TextStyle(fontSize: 42),
                             ),
                           ),
                           Text(
                             "Occupied",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 60),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
                         widget.parkingdata.removeWhere(
                           (p) => p.cityName == selectedcity,
                         );
-                        selectedcity = widget.parkingdata[1].cityName;
+
+                        if (widget.parkingdata.isNotEmpty) {
+                          selectedcity = widget.parkingdata.first.cityName;
+                          selectedarea = widget.parkingdata.first.area.first;
+                        }
                       });
                     },
+                    
                     child: Container(
                       width: 100,
                       child: Row(

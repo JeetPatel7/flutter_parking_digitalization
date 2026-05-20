@@ -3,8 +3,15 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 class Editpage extends StatefulWidget {
   final List<CityParking> parkingdata;
-  // final VoidCallback onaddpressed;
-  const Editpage({super.key, required this.parkingdata});
+  final bool isAddArea;
+  final String selectedCity;
+
+  const Editpage({
+    super.key,
+    required this.parkingdata,
+    this.isAddArea = false,
+    this.selectedCity = "",
+  });
 
   @override
   State<Editpage> createState() => _EditpageState();
@@ -20,6 +27,10 @@ class _EditpageState extends State<Editpage> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isAddArea && city.isEmpty) {
+      city = widget.selectedCity;
+      clearcity.text = widget.selectedCity;
+    }
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 189, 209, 224),
@@ -38,8 +49,8 @@ class _EditpageState extends State<Editpage> {
                 icon: const Icon(Icons.arrow_back_ios_new),
               ),
               const SizedBox(height: 24),
-              const Text(
-                "Add City and Slots",
+              Text(
+                widget.isAddArea ? "Add Area and Slots" : "Add City and Slots",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 40),
@@ -50,6 +61,7 @@ class _EditpageState extends State<Editpage> {
               const SizedBox(height: 10),
               TextField(
                 controller: clearcity,
+                readOnly: widget.isAddArea,
                 onChanged: (value) {
                   city = value;
                 },
@@ -118,11 +130,15 @@ class _EditpageState extends State<Editpage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        city = "";
+                        city = widget.isAddArea ? widget.selectedCity : "";
                         slots = "";
+                        area = "";
                         clearcity.clear();
                         clearslots.clear();
                         cleararea.clear();
+                        if (widget.isAddArea) {
+                          clearcity.text = widget.selectedCity;
+                        }
                       });
                     },
                     icon: const Icon(Icons.refresh, color: Colors.white),
@@ -137,44 +153,76 @@ class _EditpageState extends State<Editpage> {
                     ),
                     onPressed: () {
                       final String cityName = city.trim();
-                      final bool cityExists = widget.parkingdata.any(
-                        (parking) =>
-                            parking.cityName.toLowerCase() ==
-                            cityName.toLowerCase(),
-                      );
+                      final int slotCount = int.parse(slots);
+                      final String areaName = area.trim();
 
-                      if (cityExists) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("City already exist"),
+                      if (widget.isAddArea) {
+                        final CityParking selectedParking = widget.parkingdata
+                            .firstWhere((parking) => parking.cityName == cityName);
+                        final bool areaExists = selectedParking.area.any(
+                          (existingArea) =>
+                              existingArea.toLowerCase() ==
+                              areaName.toLowerCase(),
+                        );
+
+                        if (areaExists) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Area already exist"),
+                            ),
+                          );
+                          return;
+                        }
+
+                        selectedParking.area.add(areaName);
+                        selectedParking.slotDetails[areaName] = {
+                          for (int i = 1; i <= slotCount; i++) i: false,
+                        };
+                        selectedParking.totalSlots =
+                            selectedParking.totalSlots + slotCount;
+                        selectedParking.availableSlots =
+                            selectedParking.availableSlots + slotCount;
+                      } else {
+                        final bool cityExists = widget.parkingdata.any(
+                          (parking) =>
+                              parking.cityName.toLowerCase() ==
+                              cityName.toLowerCase(),
+                        );
+
+                        if (cityExists) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("City already exist"),
+                            ),
+                          );
+                          return;
+                        }
+
+                        widget.parkingdata.add(
+                          CityParking(
+                            cityName: cityName,
+                            totalSlots: slotCount,
+                            occupiedSlots: 0,
+                            availableSlots: slotCount,
+                            area: [areaName],
+                            slotDetails: {
+                              areaName: {
+                                for (int i = 1; i <= slotCount; i++) i: false,
+                              },
+                            },
                           ),
                         );
-                        return;
                       }
-
-                      final int slotCount = int.parse(slots);
-
-                      widget.parkingdata.add(
-                        CityParking(
-                          cityName: cityName,
-                          totalSlots: slotCount,
-                          occupiedSlots: 0,
-                          availableSlots: slotCount,
-                          area: [area.trim()],
-                          slotDetails: {
-                            area.trim(): {
-                              for (int i = 1; i <= slotCount; i++) i: false,
-                            },
-                          },
-                        ),
-                      );
 
                       clearcity.clear();
                       clearslots.clear();
                       cleararea.clear();
-                      city = "";
+                      city = widget.isAddArea ? widget.selectedCity : "";
                       slots = "";
                       area = "";
+                      if (widget.isAddArea) {
+                        clearcity.text = widget.selectedCity;
+                      }
                       Navigator.pop(context, true);
                     },
                     icon: const Icon(Icons.edit, color: Colors.white),
