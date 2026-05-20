@@ -57,12 +57,18 @@ class firstpageState extends State<firstpage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
+                        onPressed: () async {
+                          final result = await Navigator.pushNamed(
                             context,
                             '/edit',
                             arguments: widget.parkingdata,
                           );
+                          if(result == true && result is CityParking) {
+                            setState(() {
+                              // widget.parkingdata.add(result);
+                            // selectedcity=widget.parkingdata.last.cityName;               
+                            });
+                          }
                         },
                         icon: Row(
                           children: [
