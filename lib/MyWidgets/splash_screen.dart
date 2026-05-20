@@ -108,9 +108,9 @@ class _SplashScreenState extends State<SplashScreen> {
                                       )
                 ),
 
-                ElevatedButton(onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FragmentPlaceHolder()));
-                }, child: Text("Click me")),
+                // ElevatedButton(onPressed: (){
+                //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FragmentPlaceHolder()));
+                // }, child: Text("Click me")),
                 Spacer(),
 
                Padding(
