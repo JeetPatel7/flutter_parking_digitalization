@@ -80,15 +80,15 @@ class firstpageState extends State<firstpage> {
                                 fontSize: 18,
                               ),
                             ),
-                            Icon(Icons.edit),
+                            Icon(Icons.location_on_outlined),
                           ],
                         ),
                       ),
                     ],
                   ),
                   Divider(color: Colors.black, thickness: 2),
-                  Row(
-                    spacing: 150,
+                  Column(
+                    // spacing: 150,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -199,7 +199,7 @@ class firstpageState extends State<firstpage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 3),
                   Container(
                     height: 500,
                     width: 470,
@@ -366,7 +366,11 @@ class firstpageState extends State<firstpage> {
                         widget.parkingdata.removeWhere(
                           (p) => p.cityName == selectedcity,
                         );
-                        selectedcity = widget.parkingdata[1].cityName;
+
+                        if (widget.parkingdata.isNotEmpty) {
+                          selectedcity = widget.parkingdata.first.cityName;
+                          selectedarea = widget.parkingdata.first.area.first;
+                        }
                       });
                     },
                     child: Container(
@@ -377,6 +381,7 @@ class firstpageState extends State<firstpage> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 20),
             ],
           ),
         ),
