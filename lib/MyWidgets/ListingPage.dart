@@ -54,13 +54,41 @@ class firstpageState extends State<firstpage> {
           child: Column(
             children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,spacing: 30,
                     children: [
                       IconButton(
                         onPressed: () async {
                           final result = await Navigator.pushNamed(
                             context,
                             '/edit',
+                            arguments: widget.parkingdata,
+                          );
+
+                          // if (result == true && widget.parkingdata.isNotEmpty) {
+                          //   setState(() {
+                          //     selectedcity = widget.parkingdata.last.cityName;
+                          //     selectedarea = widget.parkingdata.last.area.first;
+                          //   });
+                          // }
+                        },
+                        icon: Row(
+                          children: [
+                            Text(
+                              "Edit City",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Icon(Icons.edit),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          final result = await Navigator.pushNamed(
+                            context,
+                            '/add',
                             arguments: widget.parkingdata,
                           );
 

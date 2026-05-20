@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/ListingPage.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 import 'package:parking_digitalization/MyWidgets/Addcity.dart';
+import 'package:parking_digitalization/MyWidgets/editpage.dart';
 import 'package:parking_digitalization/MyWidgets/splash_screen.dart';
 
 class FragmentPlaceHolder extends StatefulWidget {
@@ -109,8 +110,11 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
                   case '/':
                     builder = (BuildContext _) => firstpage(parkingdata: Data);
                     break;
+                  case '/add':
+                    builder = (BuildContext _) =>Addpage(parkingdata: Data);
+                    break;
                   case '/edit':
-                    builder = (BuildContext _) => Editpage(parkingdata: Data);
+                    builder = (BuildContext _) => editpage();
                     break;
                   default:
                     throw Exception('Invalid route: ${settings.name}');

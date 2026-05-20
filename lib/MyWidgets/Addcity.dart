@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
-class Editpage extends StatefulWidget {
+class Addpage extends StatefulWidget {
   final List<CityParking> parkingdata;
   // final VoidCallback onaddpressed;
-  const Editpage({super.key, required this.parkingdata});
+  const Addpage({super.key, required this.parkingdata});
 
   @override
-  State<Editpage> createState() => _EditpageState();
+  State<Addpage> createState() => _AddpageState();
 }
 
-class _EditpageState extends State<Editpage> {
+class _AddpageState extends State<Addpage> {
   String city = "";
   String slots = "";
   String area = "";
