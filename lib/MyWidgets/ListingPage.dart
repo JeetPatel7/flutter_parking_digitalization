@@ -3,31 +3,36 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 class firstpage extends StatefulWidget {
   final List<CityParking> parkingdata;
-  const firstpage({super.key,required this.parkingdata});
+  const firstpage({super.key, required this.parkingdata});
 
   @override
   State<firstpage> createState() => firstpageState();
 }
 
 class firstpageState extends State<firstpage> {
- 
- late String selectedcity;
-  late String selectedarea; 
-  
+  late String selectedcity;
+  late String selectedarea;
+
   @override
   void initState() {
     super.initState();
     selectedcity = widget.parkingdata[0].cityName;
-    selectedarea = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area[0];
+    selectedarea = widget.parkingdata
+        .firstWhere((p) => p.cityName == selectedcity)
+        .area[0];
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    final selectedCityData = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity);
+    final selectedCityData = widget.parkingdata.firstWhere(
+      (p) => p.cityName == selectedcity,
+    );
     final selectedAreaSlots = selectedCityData.slotDetails[selectedarea] ?? {};
     final slotNumbers = selectedAreaSlots.keys.toList()..sort();
     final totalSlots = selectedAreaSlots.length;
-    final occupiedSlots = selectedAreaSlots.values.where((value) => value).length;
+    final occupiedSlots = selectedAreaSlots.values
+        .where((value) => value)
+        .length;
     final availableSlots = totalSlots - occupiedSlots;
 
     return Container(
@@ -35,15 +40,17 @@ class firstpageState extends State<firstpage> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [IconButton(onPressed: (){
-              Navigator.pushNamed(context, '/edit',arguments: widget.parkingdata);
-              
-            }, icon: Row(
-              children: [
-                Icon(Icons.edit),
-                Text("Add City"),
-              ],
-            ))
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/edit',
+                    arguments: widget.parkingdata,
+                  );
+                },
+                icon: Row(children: [Icon(Icons.edit), Text("Add City")]),
+              ),
             ],
           ),
           Divider(color: Colors.black, thickness: 2),
@@ -55,39 +62,69 @@ class firstpageState extends State<firstpage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 spacing: 10,
                 children: [
-                  Text(
-                    "Select City: ",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Container(
+                    // color: const Color.fromARGB(255, 17, 16, 16),  
+                    child: Row(
+                    children: [
+                      Text(
+                        "Select City: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      DropdownButton(
+                        focusColor: Colors.grey,
+                        value: selectedcity,
+                        items: widget.parkingdata.map((parking) {
+                          return DropdownMenuItem(
+                            value: parking.cityName,
+                            child: Text(parking.cityName),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedcity = value!;
+                            selectedarea = widget.parkingdata
+                                .firstWhere((p) => p.cityName == selectedcity)
+                                .area[0];
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                  DropdownButton(
-                    focusColor: Colors.grey,
-                    value: selectedcity,
-                    items: widget.parkingdata.map((parking) {
-                      return DropdownMenuItem(value: parking.cityName, child: Text(parking.cityName));
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedcity = value!;    
-                        selectedarea = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area[0];
-                      });
-                    },
                   ),
                   Row(
                     spacing: 10,
-                    children: [Text("Select Area",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                    DropdownButton(
-                    focusColor: Colors.grey,
-                    value: selectedarea,
-                    items: widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area.map((area) {
-                      return DropdownMenuItem(value: area, child: Text(area));
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedarea = value!;
-                      });
-                    },
-                  ),],
-                  )
+                    children: [
+                      Text(
+                        "Select Area",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      DropdownButton(
+                        focusColor: Colors.grey,
+                        value: selectedarea,
+                        items: widget.parkingdata
+                            .firstWhere((p) => p.cityName == selectedcity)
+                            .area
+                            .map((area) {
+                              return DropdownMenuItem(
+                                value: area,
+                                child: Text(area),
+                              );
+                            })
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedarea = value!;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],
@@ -137,15 +174,14 @@ class firstpageState extends State<firstpage> {
                               Container(
                                 padding: EdgeInsets.only(left: 13),
                                 child: Text(
-                                "Slot $i",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
+                                  "Slot $i",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
-                              ),
-                              
 
                               Checkbox(
                                 value: selectedAreaSlots[i] ?? false,
@@ -197,10 +233,7 @@ class firstpageState extends State<firstpage> {
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.black, width: 2),
                     ),
-                    child: Text(
-                      " $totalSlots",
-                      style: TextStyle(fontSize: 50),
-                    ),
+                    child: Text(" $totalSlots", style: TextStyle(fontSize: 50)),
                   ),
                   Text(
                     "Total",
@@ -261,11 +294,12 @@ class firstpageState extends State<firstpage> {
           ElevatedButton(
             onPressed: () {
               setState(() {
-                widget.parkingdata.removeWhere((p) => p.cityName == selectedcity);
+                widget.parkingdata.removeWhere(
+                  (p) => p.cityName == selectedcity,
+                );
                 selectedcity = widget.parkingdata[1].cityName;
               });
-              }
-            ,
+            },
             child: Container(
               width: 100,
               child: Row(

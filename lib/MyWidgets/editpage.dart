@@ -11,150 +11,153 @@ class Editpage extends StatefulWidget {
 
 class _EditpageState extends State<Editpage> {
   String city = "";
-
   String slots = "";
+  String area = "";
+  final TextEditingController clearcity = TextEditingController();
+  final TextEditingController clearslots = TextEditingController();
+  final TextEditingController cleararea = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        IconButton(onPressed: (){
-          Navigator.pop(context, '/edit');
-        }, icon: Icon(Icons.arrow_back_ios_new)),
-        Container(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 189, 209, 224),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-
-              children: [
-                SizedBox(height: 20),
-
-                Text(
-                  "Add City and Slots",
-
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                ),
-
-                SizedBox(height: 40),
-
-                Text(
-                  "City Name",
-
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-
-                SizedBox(height: 10),
-
-                TextField(
-                  onChanged: (value) {
-                    city = value;
-                  },
-
-                  decoration: InputDecoration(
-                    hintText: "Enter city name",
-
-                    prefixIcon: Icon(Icons.location_city),
-
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 189, 209, 224),
+          body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                }, 
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                icon: const Icon(Icons.arrow_back_ios_new),
+              ),
+              const SizedBox(height: 24),
+              const Text(
+                "Add City and Slots",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                "City Name",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: clearcity,
+                onChanged: (value) {
+                  city = value;
+                },
+                decoration: InputDecoration(
+                  hintText: "Enter city name",
+                  fillColor: Colors.white,
+                  filled: true,
+                  prefixIcon: const Icon(Icons.location_on_outlined),
+               
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+              ),
+              const SizedBox(height: 30),
 
-                SizedBox(height: 30),
-
-                Text(
-                  "Number of Slots",
-
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-
-                SizedBox(height: 10),
-
-                TextField(
-                  keyboardType: TextInputType.number,
-
-                  onChanged: (value) {
-                    slots = value;
-                  },
-
-                  decoration: InputDecoration(
-                    hintText: "Enter number of slots",
-
-                    prefixIcon: Icon(Icons.local_parking),
-
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+              const Text(
+                "City Area",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: cleararea,
+                onChanged: (value) {
+                  area = value;
+                },
+                decoration: InputDecoration(
+                  hintText: "Enter area name",
+                  fillColor: Colors.white,
+                  filled: true,
+                  prefixIcon: const Icon(Icons.location_city),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+              ),
+              const SizedBox(height: 30),
 
-                SizedBox(height: 50),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                  children: [
-                    // RESET BUTTON
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                      ),
-
-                      onPressed: () {
-                        setState(() {
-                          city = "";
-
-                          slots = "";
-                        });
-                      },
-
-                      icon: Icon(Icons.refresh, color: Colors.white),
-
-                      label: Text(
-                        "Reset",
-
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                      ),
-
-                      onPressed: () {
-                        print(city);
-
-                        print(slots);
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Updated Successfully")),
-                        );
-                      },
-
-                      icon: Icon(Icons.edit, color: Colors.white),
-
-                      label: Text(
-                        "Update",
-
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
+              const Text(
+                "Number of Slots",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: clearslots,
+                onChanged: (value) {
+                  slots = value;
+                },
+                decoration: InputDecoration(
+                  hintText: "Enter number of slots",
+                  fillColor: Colors.white,
+                  filled: true,
+                  prefixIcon: const Icon(Icons.local_parking),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-              ],
-            ),
-          ),
+              ),
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        city = "";
+                        slots = "";
+                        clearcity.clear();
+                        clearslots.clear();
+                        cleararea.clear();
+                      });
+                    },
+                    icon: const Icon(Icons.refresh, color: Colors.white),
+                    label: const Text(
+                      "Reset",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                    onPressed: () {
+                      print(city);
+                      print(slots);
+                      print(area);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Updated Successfully"),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.edit, color: Colors.white),
+                    label: const Text(
+                      "Update",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+      ),
         ),
-      ],
+      ),
     );
-    //bdjbgit
   }
 }
 
