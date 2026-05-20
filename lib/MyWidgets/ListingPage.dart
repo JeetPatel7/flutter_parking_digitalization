@@ -43,8 +43,8 @@ class firstpageState extends State<firstpage> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF64B5F6),
-              Color(0xFFB2EBF2),
+              Color.fromARGB(255, 143, 192, 232),
+              Color.fromARGB(255, 173, 222, 228),
               Color.fromARGB(255, 154, 180, 191),
             ],
             stops: [0.0, 0.65, 1.0],
