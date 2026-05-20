@@ -150,6 +150,16 @@ class _EditpageState extends State<Editpage> {
                       ),
                       onPressed: () {
                         final int slotCount = int.parse(slots);
+                        bool enteredcity=widget.parkingdata.any((p) => p.cityName.toLowerCase() == city.trim().toLowerCase());
+                        if (enteredcity) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("City already exists! Please Goto Edit Page to update the city."),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                          return;
+                        }
                         widget.parkingdata.add(
                           CityParking(
                             cityName: city.trim(),

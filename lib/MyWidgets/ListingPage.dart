@@ -190,7 +190,7 @@ class firstpageState extends State<firstpage> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
-                          "Available Slots:",
+                          "Available Slots in ${selectedarea}:",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
@@ -284,7 +284,7 @@ class firstpageState extends State<firstpage> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
                                 color: Colors.black,
-                                width: 2,
+                                width: 3,
                               ),
                             ),
                             child: Text(
@@ -312,7 +312,7 @@ class firstpageState extends State<firstpage> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
                                 color: Colors.black,
-                                width: 2,
+                                width: 3,
                               ),
                             ),
                             child: Text(
@@ -340,7 +340,7 @@ class firstpageState extends State<firstpage> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
                                 color: Colors.black,
-                                width: 2,
+                                width: 3,
                               ),
                             ),
                             child: Text(
