@@ -20,7 +20,7 @@ class _EditpageState extends State<Editpage> {
 
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 170, 208, 238),
+        color: const Color.fromARGB(255, 189, 209, 224),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
