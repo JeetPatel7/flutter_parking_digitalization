@@ -136,10 +136,9 @@ class _EditpageState extends State<Editpage> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: () {
-                      print(city);
-                      print(slots);
-                      print(area);
+                      final int slotCount = int.parse(slots);
 
+<<<<<<< HEAD
                       
                       setState(() {
                         widget.parkingdata.add(
@@ -159,36 +158,31 @@ class _EditpageState extends State<Editpage> {
                         clearcity.clear();
                         clearslots.clear();
                         cleararea.clear();
-                        // widget.onaddpressed();
-                      });
+                        onPressed: () {
+                          final int slotCount = int.parse(slots);
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Updated Successfully"),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.edit, color: Colors.white),
-                    label: const Text(
-                      "Update",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-      ),
-        ),
-      ),
-    );
-  }
-}
+                          widget.parkingdata.add(
+                            CityParking(
+                              cityName: city.trim(),
+                              totalSlots: slotCount,
+                              occupiedSlots: 0,
+                              availableSlots: slotCount,
+                              area: [area.trim()],
+                              slotDetails: {
+                                area.trim(): {
+                                  for (int i = 1; i <= slotCount; i++) i: false,
+                                },
+                              },
+                            ),
+                          );
 
-// void main() {
-
-//   runApp(
-
-//     MaterialApp(
+                          clearcity.clear();
+                          clearslots.clear();
+                          cleararea.clear();
+                          city = "";
+                          slots = "";
+                          area = "";
+                          Navigator.pop(context, true);
 //       debugShowCheckedModeBanner: false,
 
 //       home: Editpage(),

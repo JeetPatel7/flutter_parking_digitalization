@@ -63,10 +63,11 @@ class firstpageState extends State<firstpage> {
                             '/edit',
                             arguments: widget.parkingdata,
                           );
-                          if(result == true && result is CityParking) {
+
+                          if (result == true && widget.parkingdata.isNotEmpty) {
                             setState(() {
-                              // widget.parkingdata.add(result);
-                            // selectedcity=widget.parkingdata.last.cityName;               
+                              selectedcity = widget.parkingdata.last.cityName;
+                              selectedarea = widget.parkingdata.last.area.first;
                             });
                           }
                         },
