@@ -18,7 +18,9 @@ class _EditpageState extends State<Editpage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_new)),
+        IconButton(onPressed: (){
+          Navigator.pop(context, '/edit');
+        }, icon: Icon(Icons.arrow_back_ios_new)),
         Container(
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 189, 209, 224),
