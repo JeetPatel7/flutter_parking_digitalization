@@ -11,10 +11,25 @@ class firstpage extends StatefulWidget {
 
 class firstpageState extends State<firstpage> {
  
-  String selectedcity = "Rajkot";
-  // String selectedarea = widget.parkingdata[0].area[0];
+ late String selectedcity;
+  late String selectedarea; 
+  
+  @override
+  void initState() {
+    super.initState();
+    selectedcity = widget.parkingdata[0].cityName;
+    selectedarea = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area[0];
+  }
+  
   @override
   Widget build(BuildContext context) {
+    final selectedCityData = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity);
+    final selectedAreaSlots = selectedCityData.slotDetails[selectedarea] ?? {};
+    final slotNumbers = selectedAreaSlots.keys.toList()..sort();
+    final totalSlots = selectedAreaSlots.length;
+    final occupiedSlots = selectedAreaSlots.values.where((value) => value).length;
+    final availableSlots = totalSlots - occupiedSlots;
+
     return Container(
       child: Column(
         children: [
@@ -23,15 +38,22 @@ class firstpageState extends State<firstpage> {
             children: [IconButton(onPressed: (){
               Navigator.pushNamed(context, '/edit',arguments: widget.parkingdata);
               
-            }, icon: Icon(Icons.add))],
+            }, icon: Row(
+              children: [
+                Icon(Icons.edit),
+                Text("Add City"),
+              ],
+            ))
+            ],
           ),
           Divider(color: Colors.black, thickness: 2),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            // mainAxisAlignment: MainAxisAlignment.end,
             spacing: 150,
             children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: 10,
                 children: [
                   Text(
                     "Select City: ",
@@ -45,35 +67,31 @@ class firstpageState extends State<firstpage> {
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
-                        selectedcity = value!;
+                        selectedcity = value!;    
+                        selectedarea = widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area[0];
                       });
                     },
                   ),
-                  // Text("Selec Area: ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  // DropdownButton(
-                  //   focusColor: Colors.grey,
-                  //   value: selectedarea,
-                  //   items: widget.parkingdata.map((parking) {
-                  //     return DropdownMenuItem(value: parking.cityName, child: Text(parking.cityName));
-                  //   }).toList(),
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       selectedcity = value!;
-                  //     });
-                  //   },
-                  // ),
+                  Row(
+                    spacing: 10,
+                    children: [Text("Select Area",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    DropdownButton(
+                    focusColor: Colors.grey,
+                    value: selectedarea,
+                    items: widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).area.map((area) {
+                      return DropdownMenuItem(value: area, child: Text(area));
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedarea = value!;
+                      });
+                    },
+                  ),],
+                  )
                 ],
               ),
             ],
           ),
-          // Row(
-          //   children: [
-          //     Text(
-          //       "Total Slots:${Slots[selectedcity]}",
-          //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          //     ),
-          //   ],
-          // ),
           Divider(color: Colors.black, thickness: 2),
           SizedBox(height: 10),
           Row(
@@ -99,8 +117,7 @@ class firstpageState extends State<firstpage> {
               child: Column(
                 spacing: 18,
                 children: [
-                  for (int i = 1; i <= widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).totalSlots; i++)
-                    // if (SlotDetails[selectedcity]![i] == false)
+                  for (int i in slotNumbers)
                     Row(
                       children: [
                         Container(
@@ -115,6 +132,7 @@ class firstpageState extends State<firstpage> {
                           ),
                           child: Row(
                             spacing: 210,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 padding: EdgeInsets.only(left: 13),
@@ -130,37 +148,10 @@ class firstpageState extends State<firstpage> {
                               
 
                               Checkbox(
-                                // title: Text("Slot $i: ",style: TextStyle(
-                                //   fontSize: 20,
-                                //   fontWeight: FontWeight.w500,
-                                //   color: Colors.black,
-                                // )),
-                                value: widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).slotDetails[i],
+                                value: selectedAreaSlots[i] ?? false,
                                 onChanged: (value) {
                                   setState(() {
-                                    bool oldValue =
-                                        widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).slotDetails[i]!;
-
-                                    // update checkbox value
-                                    widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).slotDetails[i] = value!;
-
-                                    // if free -> occupied
-                                    if (oldValue == false && value == true) {
-                                      widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).occupiedSlots =
-                                          widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).occupiedSlots + 1;
-
-                                      widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).availableSlots =
-                                          widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).availableSlots - 1;
-                                    }
-                                    // if occupied -> free
-                                    else if (oldValue == true &&
-                                        value == false) {
-                                      widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).occupiedSlots =
-                                          widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).occupiedSlots - 1;
-
-                                      widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).availableSlots =
-                                          widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).availableSlots + 1;
-                                    }
+                                    selectedAreaSlots[i] = value!;
                                   });
                                 },
                               ),
@@ -207,7 +198,7 @@ class firstpageState extends State<firstpage> {
                       border: Border.all(color: Colors.black, width: 2),
                     ),
                     child: Text(
-                      " ${widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).totalSlots}",
+                      " $totalSlots",
                       style: TextStyle(fontSize: 50),
                     ),
                   ),
@@ -230,7 +221,7 @@ class firstpageState extends State<firstpage> {
                       border: Border.all(color: Colors.black, width: 2),
                     ),
                     child: Text(
-                      " ${widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).availableSlots}",
+                      " $availableSlots",
                       style: TextStyle(fontSize: 55),
                     ),
                   ),
@@ -253,7 +244,7 @@ class firstpageState extends State<firstpage> {
                       border: Border.all(color: Colors.black, width: 2),
                     ),
                     child: Text(
-                      " ${widget.parkingdata.firstWhere((p) => p.cityName == selectedcity).occupiedSlots}",
+                      " $occupiedSlots",
                       style: TextStyle(fontSize: 55),
                     ),
                   ),

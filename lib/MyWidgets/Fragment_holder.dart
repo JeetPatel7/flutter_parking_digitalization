@@ -14,58 +14,46 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   List<CityParking> Data = [
     CityParking(
       cityName: "Rajkot",
-      totalSlots: 10,
-      occupiedSlots: 6,
-      availableSlots: 4,
+      totalSlots: 31,
+      occupiedSlots: 19,
+      availableSlots: 12,
 
       area: ["Area 1", "Area 2", "Area 3"],
 
       slotDetails: {
-        1: true,
-        2: false,
-        3: true,
-        4: false,
-        5: true,
-        6: true,
-        7: false,
-        8: true,
-        9: false,
-        10: true,
+        "Area 1": {1: true, 2: false, 3: true, 4: false, 5: true, 6: false, 7: true, 8: false},
+        "Area 2": {1: false, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false, 8: true, 9: true, 10: false, 11: true, 12: true},
+        "Area 3": {1: true, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false, 8: true, 9: false, 10: true, 11: false},
       },
     ),
 
     CityParking(
       cityName: "Ahmedabad",
-      totalSlots: 5,
-      occupiedSlots: 3,
-      availableSlots: 2,
+      totalSlots: 31,
+      occupiedSlots: 17,
+      availableSlots: 14,
 
       area: ["Area 4", "Area 5", "Area 6"],
 
-      slotDetails: {1: true, 2: true, 3: false, 4: true, 5: false},
+      slotDetails: {
+        "Area 4": {1: true, 2: true, 3: false, 4: true, 5: false, 6: true, 7: false},
+        "Area 5": {1: false, 2: true, 3: true, 4: false, 5: true, 6: false, 7: true, 8: false, 9: true},
+        "Area 6": {1: true, 2: false, 3: true, 4: false, 5: true, 6: false, 7: true, 8: true, 9: false, 10: true, 11: false, 12: true, 13: false, 14: true, 15: false},
+      },
     ),
 
     CityParking(
       cityName: "Surat",
-      totalSlots: 12,
-      occupiedSlots: 7,
-      availableSlots: 5,
+      totalSlots: 37,
+      occupiedSlots: 22,
+      availableSlots: 15,
 
       area: ["Area 7", "Area 8", "Area 9"],
 
       slotDetails: {
-        1: false,
-        2: true,
-        3: true,
-        4: false,
-        5: true,
-        6: true,
-        7: false,
-        8: true,
-        9: false,
-        10: true,
-        11: true,
-        12: false,
+        "Area 7": {1: false, 2: true, 3: true, 4: false, 5: true, 6: false, 7: true, 8: true, 9: false, 10: true, 11: false, 12: true, 13: true, 14: false},
+        "Area 8": {1: true, 2: false, 3: true, 4: true, 5: false, 6: true, 7: false, 8: true, 9: false, 10: true},
+        "Area 9": {1: false, 2: true, 3: false, 4: true, 5: false, 6: true, 7: true, 8: false, 9: true, 10: false, 11: true, 12: false, 13: true},
       },
     ),
   ];
