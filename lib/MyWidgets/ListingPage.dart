@@ -36,6 +36,7 @@ class firstpageState extends State<firstpage> {
     final availableSlots = totalSlots - occupiedSlots;
 
     return Container(
+      color: const Color.fromARGB(255, 189, 209, 224),
       child: Column(
         children: [
           Row(
@@ -49,7 +50,7 @@ class firstpageState extends State<firstpage> {
                     arguments: widget.parkingdata,
                   );
                 },
-                icon: Row(children: [Icon(Icons.edit), Text("Add City")]),
+                icon: Row(children: [Text("Add City",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 18)),Icon(Icons.edit)]),
               ),
             ],
           ),
@@ -63,7 +64,6 @@ class firstpageState extends State<firstpage> {
                 spacing: 10,
                 children: [
                   Container(
-                    // color: const Color.fromARGB(255, 17, 16, 16),  
                     child: Row(
                     children: [
                       Text(
@@ -73,13 +73,14 @@ class firstpageState extends State<firstpage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      
                       DropdownButton(
                         focusColor: Colors.grey,
                         value: selectedcity,
                         items: widget.parkingdata.map((parking) {
                           return DropdownMenuItem(
                             value: parking.cityName,
-                            child: Text(parking.cityName),
+                            child: Text(parking.cityName,style: TextStyle(fontSize: 18)),
                           );
                         }).toList(),
                         onChanged: (value) {
@@ -113,7 +114,7 @@ class firstpageState extends State<firstpage> {
                             .map((area) {
                               return DropdownMenuItem(
                                 value: area,
-                                child: Text(area),
+                                child: Text(area,style: TextStyle(fontSize: 16)),
                               );
                             })
                             .toList(),
@@ -163,7 +164,7 @@ class firstpageState extends State<firstpage> {
                           height: 40,
                           width: 355,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF74ABE2),
+                            color: const Color.fromARGB(161, 255, 255, 255),
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: Colors.black, width: 2),
                           ),
