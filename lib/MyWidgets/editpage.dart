@@ -4,7 +4,7 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 class Editpage extends StatefulWidget {
   final List<CityParking> parkingdata;
   // final VoidCallback onaddpressed;
-  const Editpage({super.key, required this.parkingdata, });
+  const Editpage({super.key, required this.parkingdata});
 
   @override
   State<Editpage> createState() => _EditpageState();
@@ -138,51 +138,50 @@ class _EditpageState extends State<Editpage> {
                     onPressed: () {
                       final int slotCount = int.parse(slots);
 
-<<<<<<< HEAD
-                      
-                      setState(() {
-                        widget.parkingdata.add(
-                          CityParking(
-                            cityName: city,
-                            totalSlots: int.parse(slots),
-                            occupiedSlots: 0,
-                            availableSlots: int.parse(slots),
-                            area: [area],
-                            slotDetails: {
-                              area: {for (int i = 1; i <= int.parse(slots); i++) i: false},
+                      widget.parkingdata.add(
+                        CityParking(
+                          cityName: city.trim(),
+                          totalSlots: slotCount,
+                          occupiedSlots: 0,
+                          availableSlots: slotCount,
+                          area: [area.trim()],
+                          slotDetails: {
+                            area.trim(): {
+                              for (int i = 1; i <= slotCount; i++) i: false,
                             },
-                          ),
-                        );
-                        city = "";
-                        slots = "";
-                        clearcity.clear();
-                        clearslots.clear();
-                        cleararea.clear();
-                        onPressed: () {
-                          final int slotCount = int.parse(slots);
+                          },
+                        ),
+                      );
 
-                          widget.parkingdata.add(
-                            CityParking(
-                              cityName: city.trim(),
-                              totalSlots: slotCount,
-                              occupiedSlots: 0,
-                              availableSlots: slotCount,
-                              area: [area.trim()],
-                              slotDetails: {
-                                area.trim(): {
-                                  for (int i = 1; i <= slotCount; i++) i: false,
-                                },
-                              },
-                            ),
-                          );
+                      clearcity.clear();
+                      clearslots.clear();
+                      cleararea.clear();
+                      city = "";
+                      slots = "";
+                      area = "";
+                      Navigator.pop(context, true);
+                    },
+                    icon: const Icon(Icons.edit, color: Colors.white),
+                    label: const Text(
+                      "Update",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+      ),
+        ),
+      ),
+    );
+  }
+}
 
-                          clearcity.clear();
-                          clearslots.clear();
-                          cleararea.clear();
-                          city = "";
-                          slots = "";
-                          area = "";
-                          Navigator.pop(context, true);
+// void main() {
+
+//   runApp(
+
+//     MaterialApp(
 //       debugShowCheckedModeBanner: false,
 
 //       home: Editpage(),
