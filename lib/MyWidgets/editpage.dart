@@ -136,37 +136,30 @@ class _EditpageState extends State<Editpage> {
                       backgroundColor: Colors.green,
                     ),
                     onPressed: () {
-                      print(city);
-                      print(slots);
-                      print(area);
+                      final int slotCount = int.parse(slots);
 
-                      
-                      setState(() {
-                        // widget.parkingdata.add(
-                          CityParking newdata=CityParking(
-                            cityName: city,
-                            totalSlots: int.parse(slots),
-                            occupiedSlots: 0,
-                            availableSlots: int.parse(slots),
-                            area: [area],
-                            slotDetails: {
-                              area: {for (int i = 1; i <= int.parse(slots); i++) i: false},
+                      widget.parkingdata.add(
+                        CityParking(
+                          cityName: city.trim(),
+                          totalSlots: slotCount,
+                          occupiedSlots: 0,
+                          availableSlots: slotCount,
+                          area: [area.trim()],
+                          slotDetails: {
+                            area.trim(): {
+                              for (int i = 1; i <= slotCount; i++) i: false,
                             },
-                          );
-                        // );
-                        city = "";
-                        slots = "";
-                        clearcity.clear();
-                        clearslots.clear();
-                        cleararea.clear();
-                         Navigator.pop(context, newdata);
-                      });
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Updated Successfully"),
+                          },
                         ),
                       );
+
+                      clearcity.clear();
+                      clearslots.clear();
+                      cleararea.clear();
+                      city = "";
+                      slots = "";
+                      area = "";
+                      Navigator.pop(context, true);
                     },
                     icon: const Icon(Icons.edit, color: Colors.white),
                     label: const Text(
