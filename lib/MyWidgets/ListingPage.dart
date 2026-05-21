@@ -127,7 +127,7 @@ class firstpageState extends State<firstpage> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(235, 227, 242, 253),
+                                    color: const Color.fromARGB(212, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(8)
                                   ),
                                   child: Text(
@@ -170,7 +170,7 @@ class firstpageState extends State<firstpage> {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromARGB(235, 227, 242, 253),
+                                    color: const Color.fromARGB(212, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(8)
                                   ),
                                 child: Text(
