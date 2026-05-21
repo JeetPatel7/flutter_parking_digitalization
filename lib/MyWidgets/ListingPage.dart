@@ -219,7 +219,7 @@ class firstpageState extends State<firstpage> {
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
-                          "Available Slots in ${selectedarea}:",
+                          "Slots in ${selectedarea}:",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
