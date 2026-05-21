@@ -72,12 +72,16 @@ class firstpageState extends State<firstpage> {
                           }
                         },
                         icon: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(
-                              "Edit City",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
+                            Container(
+                              
+                              child: Text(
+                                "Edit City",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                             Icon(Icons.edit),
