@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
                                   ),
                         ),
 
-               SizedBox(height: 20),
+               SizedBox(height: 40),
 
               Text("Parking Made Simple", style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,letterSpacing: 1,
                   color: Color(0xFF243B6B))
@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
 
-              SizedBox(height: 45),
+              SizedBox(height: 95),
 
             
               CircularProgressIndicator(
@@ -98,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               
 
-              SizedBox(height: 15),
+              SizedBox(height: 35),
 
               Text("Loading....", 
                      style: TextStyle(
@@ -114,7 +114,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 Spacer(),
 
                Padding(
-                padding: const EdgeInsets.only(bottom: 40),
+                padding: const EdgeInsets.only(bottom: 80),
 
                 child: Text(
                   "© 2026 Smart Parking Solutions",
