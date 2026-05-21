@@ -1,5 +1,3 @@
-import 'package:parking_digitalization/MyWidgets/Fragment_holder.dart';
-
 class CityParking {
   String cityName;
   int totalSlots;
@@ -15,7 +13,6 @@ class CityParking {
     required this.availableSlots,
     required this.area,
     required this.slotDetails,
-    preparelist,
   }
   );
 

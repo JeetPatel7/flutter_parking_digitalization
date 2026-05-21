@@ -183,6 +183,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
     //     MaterialPageRoute(builder: (context) => _buildMainNavigator()),
     //   );
     // });
+     preparelist();
     Future.delayed(Duration(seconds: 4), () {
       navigatorKey.currentState?.pushReplacement(
         MaterialPageRoute(builder: (context) => _buildMainNavigator()),
@@ -190,15 +191,17 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
     });
   }
 
-  @override
-  Future<void> Savelist(List<CityParking> newData) async {
+  
+  Future<void> Savelist(List<CityParking> updateddata) async {
       final pref = await SharedPreferences.getInstance();
-      String jsonList = newData
-          .map((item) => item.toJson())
-          .toList()
-          .toString();
-      pref.setString('parking_Data', jsonList);
-      newData=[];
+      String jsonList =jsonEncode(updateddata.map((item) => item.toJson()).toList());
+      // String jsonList =Data.map((item) => item.toJson()).toList().toString();
+       pref.setString('parking_Data', jsonList);
+
+       setState(() {
+        Data = updateddata;
+       });
+      //newData=[]; 
       // print("Initial Data:");
       // print(jsonList);
     }
@@ -209,17 +212,19 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
     String? jsonList = pref.getString('parking_Data');
     if (jsonList != null) {
       List<dynamic> decodedList = jsonDecode(jsonList);
-      List<CityParking> parkingData = decodedList
+      // List<CityParking> parkingData = decodedList
+      //     .map((item) => CityParking.fromJson(item))
+      //     .toList();
+      setState(() {
+        Data =decodedList
           .map((item) => CityParking.fromJson(item))
           .toList();
-      setState(() {
-        Data = parkingData;
       });
     }
   }
 
 
-
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
