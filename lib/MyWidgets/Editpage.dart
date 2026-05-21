@@ -363,11 +363,11 @@ class _editpageState extends State<editpage> {
                         ),
                         onPressed: _saveAreaEdits,
                         icon: const Icon(Icons.save),
-                        label: const Text('Save Area'),
+                        label: const Text('Save Area',style: TextStyle(color: Colors.white),),
                       ),
                       ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey,
+                          backgroundColor: Colors.red,
                         ),
                         onPressed: () {
                           setState(() {
@@ -375,7 +375,7 @@ class _editpageState extends State<editpage> {
                           });
                         },
                         icon: const Icon(Icons.refresh),
-                        label: const Text('Reset'),
+                        label: const Text('Reset',style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
@@ -423,7 +423,7 @@ class _editpageState extends State<editpage> {
                     ),
                     onPressed: _addNewArea,
                     icon: const Icon(Icons.add),
-                    label: const Text('Add Area'),
+                    label: const Text('Add Area', style: TextStyle(color: Colors.white)),
                   ),
                   const SizedBox(height: 40),
                 ],
