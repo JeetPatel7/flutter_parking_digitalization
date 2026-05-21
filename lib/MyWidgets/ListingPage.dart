@@ -251,12 +251,7 @@ class firstpageState extends State<firstpage> {
                                   height: 40,
                                   width: 355,
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                      161,
-                                      255,
-                                      255,
-                                      255,
-                                    ),
+                                    color: const Color.fromARGB(239, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                       color: Colors.black,
