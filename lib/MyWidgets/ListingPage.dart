@@ -38,6 +38,7 @@ class firstpageState extends State<firstpage> {
     return Scaffold(
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -53,8 +54,9 @@ class firstpageState extends State<firstpage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+                  SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,spacing: 30,
+                    mainAxisAlignment: MainAxisAlignment.end,spacing: 18,
                     children: [
                       IconButton(
                         onPressed: () async {
@@ -80,7 +82,7 @@ class firstpageState extends State<firstpage> {
                                 "Edit City",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 18,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
@@ -109,7 +111,7 @@ class firstpageState extends State<firstpage> {
                               "Add City",
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                             Icon(Icons.location_on_outlined),
@@ -124,7 +126,7 @@ class firstpageState extends State<firstpage> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        spacing: 10,
+                        spacing: 8,
                         children: [
                           Container(
                             child: Row(
@@ -137,7 +139,7 @@ class firstpageState extends State<firstpage> {
                                   child: Text(
                                     "Select City: ",
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -151,7 +153,7 @@ class firstpageState extends State<firstpage> {
                                       value: parking.cityName,
                                       child: Text(
                                         parking.cityName,
-                                        style: TextStyle(fontSize: 18),
+                                        style: TextStyle(fontSize: 16),
                                       ),
                                     );
                                   }).toList(),
@@ -170,7 +172,7 @@ class firstpageState extends State<firstpage> {
                             ),
                           ),
                           Row(
-                            spacing: 10,
+                            spacing: 8,
                             children: [
                               Container(
                                 decoration: BoxDecoration(
@@ -180,7 +182,7 @@ class firstpageState extends State<firstpage> {
                                 child: Text(
                                   "Select Area",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -200,7 +202,7 @@ class firstpageState extends State<firstpage> {
                                     value: area,
                                     child: Text(                                   
                                       area,
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   );
                                 }).toList(),
@@ -221,23 +223,23 @@ class firstpageState extends State<firstpage> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
                           "Slots in ${selectedarea}:",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 25,
+                            fontSize: 24,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 3),
+                  SizedBox(height: 8),
                   Container(
                     height: 500,
-                    width: 470,
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(15),
+                    width: 440,
+                    margin: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(28, 85, 99, 222),
                       borderRadius: BorderRadius.circular(10),
@@ -251,9 +253,9 @@ class firstpageState extends State<firstpage> {
                             Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.only(left: 15),
+                                  padding: EdgeInsets.only(left: 12),
                                   height: 40,
-                                  width: 355,
+                                  width: 340,
                                   decoration: BoxDecoration(
                                     color: const Color.fromARGB(239, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(10),
@@ -263,16 +265,16 @@ class firstpageState extends State<firstpage> {
                                     ),
                                   ),
                                   child: Row(
-                                    spacing: 210,
+                                    spacing: 170,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.only(left: 13),
+                                        padding: EdgeInsets.only(left: 10),
                                         child: Text(
                                           "Slot $i",
                                           style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black,
                                           ),
@@ -299,13 +301,13 @@ class firstpageState extends State<firstpage> {
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 50,
+                    spacing: 28,
                     children: [
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 94,
+                            width: 94,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(147, 54, 130, 244),
@@ -317,14 +319,14 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $totalSlots",
-                              style: TextStyle(fontSize: 50),
+                              style: TextStyle(fontSize: 44),
                             ),
                           ),
                           Text(
                             "Total",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -332,8 +334,8 @@ class firstpageState extends State<firstpage> {
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 94,
+                            width: 94,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(109, 69, 244, 110),
@@ -345,14 +347,14 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $availableSlots",
-                              style: TextStyle(fontSize: 55),
+                              style: TextStyle(fontSize: 44),
                             ),
                           ),
                           Text(
                             "Free",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -360,8 +362,8 @@ class firstpageState extends State<firstpage> {
                       Column(
                         children: [
                           Container(
-                            height: 100,
-                            width: 100,
+                            height: 94,
+                            width: 94,
                             padding: EdgeInsets.only(left: 8, top: 12),
                             decoration: BoxDecoration(
                               color: const Color.fromARGB(105, 244, 67, 54),
@@ -373,21 +375,21 @@ class firstpageState extends State<firstpage> {
                             ),
                             child: Text(
                               " $occupiedSlots",
-                              style: TextStyle(fontSize: 55),
+                              style: TextStyle(fontSize: 44),
                             ),
                           ),
                           Text(
                             "Occupied",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 14),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
