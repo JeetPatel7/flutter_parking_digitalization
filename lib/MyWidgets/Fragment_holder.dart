@@ -174,7 +174,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 4), () {
       navigatorKey.currentState?.pushReplacement(
         MaterialPageRoute(builder: (context) => _buildMainNavigator()),
       );
