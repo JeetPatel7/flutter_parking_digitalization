@@ -6,6 +6,8 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 import 'package:parking_digitalization/MyWidgets/Addcity.dart';
 import 'package:parking_digitalization/MyWidgets/editpage.dart';
 import 'package:parking_digitalization/MyWidgets/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class FragmentPlaceHolder extends StatefulWidget {
   const FragmentPlaceHolder({super.key});
@@ -171,33 +173,53 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       },
     ),
   ];
+  
+
   @override
   void initState() {
-     super.initState();
+    super.initState();
     // Timer(const Duration(seconds: 4), () {
     //   navigatorKey.currentState?.pushReplacement(
     //     MaterialPageRoute(builder: (context) => _buildMainNavigator()),
     //   );
     // });
-Future.delayed( Duration(seconds: 4), () {
+    Future.delayed(Duration(seconds: 4), () {
       navigatorKey.currentState?.pushReplacement(
         MaterialPageRoute(builder: (context) => _buildMainNavigator()),
       );
     });
-
   }
 
   @override
-  // Future<void> _navigateAndGetNewData() async {
-  //     // Open the Add Page and wait for a result
-  //      final result = await Navigator.pushNamed(context, '/edit');
-  //     // 3. If a valid item was sent back, inject it and trigger UI refresh
-  //     // if (result != null && result is CityParking) {
-  //       setState(() {
-  //         // Data.add(result);
-  //       });
-  //     }
-  //   }
+  Future<void> Savelist(List<CityParking> newData) async {
+      final pref = await SharedPreferences.getInstance();
+      String jsonList = newData
+          .map((item) => item.toJson())
+          .toList()
+          .toString();
+      pref.setString('parking_Data', jsonList);
+      newData=[];
+      // print("Initial Data:");
+      // print(jsonList);
+    }
+    // Savelist(Data);
+
+  Future<void> preparelist() async {
+    final pref = await SharedPreferences.getInstance();
+    String? jsonList = pref.getString('parking_Data');
+    if (jsonList != null) {
+      List<dynamic> decodedList = jsonDecode(jsonList);
+      List<CityParking> parkingData = decodedList
+          .map((item) => CityParking.fromJson(item))
+          .toList();
+      setState(() {
+        Data = parkingData;
+      });
+    }
+  }
+
+
+
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
@@ -217,10 +239,10 @@ Future.delayed( Duration(seconds: 4), () {
                 WidgetBuilder builder;
                 switch (settings.name) {
                   case '/':
-                    builder = (BuildContext _) => firstpage(parkingdata: Data);
+                    builder = (BuildContext _) => firstpage(parkingdata: Data,deletdata: Savelist,);
                     break;
                   case '/add':
-                    builder = (BuildContext _) => Addpage(parkingdata: Data);
+                    builder = (BuildContext _) => Addpage(parkingdata: Data,adddata: Savelist,);
                     break;
                   case '/edit':
                     builder = (BuildContext _) => editpage(parkingdata: Data);

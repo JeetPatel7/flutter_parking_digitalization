@@ -3,8 +3,8 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 class Addpage extends StatefulWidget {
   final List<CityParking> parkingdata;
-  // final VoidCallback onaddpressed;
-  const Addpage({super.key, required this.parkingdata});
+  final Function adddata;
+  const Addpage({super.key, required this.parkingdata, required this.adddata});
 
   @override
   State<Addpage> createState() => _AddpageState();
@@ -174,6 +174,8 @@ class _AddpageState extends State<Addpage> {
                             },
                           ),
                         );
+                        widget.adddata(widget.parkingdata);
+                        
 
                         clearcity.clear();
                         clearslots.clear();
