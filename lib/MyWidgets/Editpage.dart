@@ -229,6 +229,10 @@ class _editpageState extends State<editpage> {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
+           image: DecorationImage(
+              image: AssetImage('assets/images/image4.png'),
+              fit: BoxFit.cover,
+            ),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

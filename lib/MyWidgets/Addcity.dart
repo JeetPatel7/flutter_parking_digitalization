@@ -25,6 +25,10 @@ class _AddpageState extends State<Addpage> {
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
+           image: DecorationImage(
+              image: AssetImage('assets/images/image4.png'),
+              fit: BoxFit.cover,
+            ),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

@@ -41,12 +41,17 @@ class firstpageState extends State<firstpage> {
 
     return Scaffold(
       body: Container(
+        
         width: double.infinity,
         decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/image4.png'),
+              fit: BoxFit.cover,
+            ),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
+             colors: [
               Color.fromARGB(255, 143, 192, 232),
               Color.fromARGB(255, 173, 222, 228),
               Color.fromARGB(255, 154, 180, 191),
