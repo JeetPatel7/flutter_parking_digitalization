@@ -531,6 +531,9 @@ class firstpageState extends State<firstpage> {
                         selectedcity = widget.parkingdata.first.cityName;
 
                         selectedarea = widget.parkingdata.first.area.first;
+                      } else {
+                       selectedcity = "";
+      selectedarea = "";
                       }
 
                       widget.deletdata(widget.parkingdata);
