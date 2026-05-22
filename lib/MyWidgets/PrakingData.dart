@@ -13,18 +13,31 @@ class CityParking {
     required this.availableSlots,
     required this.area,
     required this.slotDetails,
-  }
-  );
+  });
 
   Map<String, dynamic> toJson() {
+    Map<String, dynamic> serializedSlotDetails = slotDetails.map((
+      areaKey,
+      innerMap,
+    ) {
+      Map<String, bool> stringKeyInnerMap = innerMap.map((
+        slotIntKey,
+        isOccupied,
+      ) {
+        return MapEntry(
+          slotIntKey.toString(),
+          isOccupied,
+        ); // 👈 Converts int key (1) to String key ("1")
+      });
+      return MapEntry(areaKey, stringKeyInnerMap);
+    });
     return {
-      'cityName': cityName,
-      'totalSlots': totalSlots,
-      'occupiedSlots': occupiedSlots,
-      'availableSlots': availableSlots,
-      'area': area,
-      'slotDetails': slotDetails,
-    
+      "cityName": cityName,
+      "totalSlots": totalSlots,
+      "occupiedSlots": occupiedSlots,
+      "availableSlots": availableSlots,
+      "area": area,
+      "slotDetails": serializedSlotDetails,
     };
   }
 
@@ -35,8 +48,14 @@ class CityParking {
       occupiedSlots: json['occupiedSlots'] as int,
       availableSlots: json['availableSlots'] as int,
       area: List<String>.from(json['area']),
-      slotDetails: (json['slotDetails'] as Map<String, dynamic>)
-          .map((key, value) => MapEntry(key, (value as Map<String, dynamic>).map((k, v) => MapEntry(int.parse(k), v as bool)))),
+      slotDetails: (json['slotDetails'] as Map<String, dynamic>).map(
+        (key, value) => MapEntry(
+          key,
+          (value as Map<String, dynamic>).map(
+            (k, v) => MapEntry(int.parse(k), v as bool),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -160,7 +160,7 @@ class _AddpageState extends State<Addpage> {
                           );
                           return;
                         }
-                        final newCityData =
+                        widget.parkingdata.add(
                           CityParking(
                             cityName: city.trim(),
                             totalSlots: slotCount,
@@ -172,11 +172,11 @@ class _AddpageState extends State<Addpage> {
                                 for (int i = 1; i <= slotCount; i++) i: false,
                               },
                             },
-                          
+                          )
                         );
                         
-                        List<CityParking> updatedList = List.from(widget.parkingdata)..add(newCityData);
-                        widget.adddata(updatedList);
+                        // List<CityParking> updatedList = List.from(widget.parkingdata)..add(newCityData);
+                        widget.adddata(widget.parkingdata);
                         
 
                         clearcity.clear();

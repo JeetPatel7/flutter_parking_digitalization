@@ -3,7 +3,8 @@ import 'package:parking_digitalization/MyWidgets/PrakingData.dart';
 
 class editpage extends StatefulWidget {
   final List<CityParking> parkingdata;
-  const editpage({super.key, required this.parkingdata});
+  final Function Editlist;
+  const editpage({super.key, required this.parkingdata,required this.Editlist});
 
   @override
   State<editpage> createState() => _editpageState();
@@ -361,7 +362,9 @@ class _editpageState extends State<editpage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                         ),
-                        onPressed: _saveAreaEdits,
+                        onPressed:(){ _saveAreaEdits();
+                          widget.Editlist(parkingdata);
+                        },
                         icon: const Icon(Icons.save),
                         label: const Text('Save Area',style: TextStyle(color: Colors.white),),
                       ),
@@ -421,7 +424,9 @@ class _editpageState extends State<editpage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
                     ),
-                    onPressed: _addNewArea,
+                    onPressed:(){ _addNewArea();
+                      widget.Editlist(parkingdata);
+                    },
                     icon: const Icon(Icons.add),
                     label: const Text('Add Area', style: TextStyle(color: Colors.white)),
                   ),

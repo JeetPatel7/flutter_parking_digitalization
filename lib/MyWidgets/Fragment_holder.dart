@@ -192,20 +192,17 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
   }
 
   
-  Future<void> Savelist(List<CityParking> updateddata) async {
+  Future<void> Savelist(List<CityParking> data) async {
       final pref = await SharedPreferences.getInstance();
-      String jsonList =jsonEncode(updateddata.map((item) => item.toJson()).toList());
+      String jsonList =jsonEncode(data.map((item) => item.toJson()).toList());
       // String jsonList =Data.map((item) => item.toJson()).toList().toString();
        pref.setString('parking_Data', jsonList);
-
+  // print(jsonList);
        setState(() {
-        Data = updateddata;
+        Data = data;
        });
-      //newData=[]; 
-      // print("Initial Data:");
-      // print(jsonList);
+      
     }
-    // Savelist(Data);
 
   Future<void> preparelist() async {
     final pref = await SharedPreferences.getInstance();
@@ -215,11 +212,16 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
       // List<CityParking> parkingData = decodedList
       //     .map((item) => CityParking.fromJson(item))
       //     .toList();
+      // print(decodedList);
+      try{
       setState(() {
         Data =decodedList
           .map((item) => CityParking.fromJson(item))
           .toList();
       });
+      }catch(e){print(
+        "$e"
+      );}
     }
   }
 
@@ -250,7 +252,7 @@ class FragmentPlaceHolderState extends State<FragmentPlaceHolder> {
                     builder = (BuildContext _) => Addpage(parkingdata: Data,adddata: Savelist,);
                     break;
                   case '/edit':
-                    builder = (BuildContext _) => editpage(parkingdata: Data);
+                    builder = (BuildContext _) => editpage(parkingdata: Data,Editlist: Savelist,);
                     break;
                   default:
                     throw Exception('Invalid route: ${settings.name}');
